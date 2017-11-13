@@ -4,9 +4,10 @@ import javax.swing.*;
 
 public class GUI extends JFrame {
 
-	Container container;
-	//private JPanel puzzlePanel;
+	private Container container;
 	private Menu menuBar;
+
+	
 
 	public GUI(){
 		super("Battleship");
@@ -35,6 +36,8 @@ public class GUI extends JFrame {
 		
 		container = getContentPane();
 		container.setLayout(new BorderLayout());
+		
+		
 		
 	}
 	
