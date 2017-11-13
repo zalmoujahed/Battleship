@@ -17,7 +17,7 @@ public class GUI extends JFrame {
 	//_______________________________________________________//
 	
 	public void setMenu(){
-		bar = new JMenuBar();
+		bar = new Menu();
 		setJMenuBar(bar);
 		
 		
