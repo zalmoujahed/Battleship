@@ -25,33 +25,29 @@ public class Board extends JPanel{
 	}
 
 	private void Create2DArray(){
-		boardLabels = new ArrayList<ArrayList<Label>>(9);
-		for(int i = 0; i < 9; i++){
-			row = new ArrayList<Label>(9);
-			for(int j = 0; j < 9; j++){
+		boardLabels = new ArrayList<ArrayList<Label>>(10);
+		for(int i = 0; i < 10; i++){
+			row = new ArrayList<Label>(10);
+			for(int j = 0; j < 10; j++){
 				row.add(new Label());
-				row.get(j).addMouseListener( new LabelListener());
+				//row.get(j).addMouseListener(new LabelListener());
 			}
 			boardLabels.add(row);
 		}
 	}
 
 	private void CreateGamePanel(){
-		int i, j, k, l;
-	    for(i = 0; i < 9; i = i + 3){
-	   		for(j = 0; j < 9; j = j + 3) {
-	   			grid = new GridLayout(3, 3, 2, 2 );
-	    		innerPanel = new JPanel( grid );
-	    		innerPanel.setOpaque(true);
-	    		innerPanel.setBackground(Color.YELLOW);
-	   			for(k = 0; k < 3; k++){
-	   				for(l = 0; l < 3; l++){
-	    				innerPanel.add( boardLabels.get(k + i).get(l + j) );
+		int i = 0;
+		int j = 0;
+	   	grid = new GridLayout(5, 5, 2, 2 );
+	    	innerPanel = new JPanel( grid );
+	    	innerPanel.setOpaque(true);
+	    	innerPanel.setBackground(Color.YELLOW);
+	   	for(i = 0; i < 10; i++){
+	   		for(j = 0; j < 10; j++){
+	    			innerPanel.add( boardLabels.get(i).get(j) );
 	    			}
 	    		}
 	    		this.add(innerPanel);
-	   		}
-	    }
-	}
-
+	   	}
 }

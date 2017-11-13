@@ -6,6 +6,7 @@ public class GUI extends JFrame {
 
 	private Container container;
 	private Menu menuBar;
+	private Board gamePanel;
 
 	
 
@@ -21,12 +22,12 @@ public class GUI extends JFrame {
 	//_______________________________________________________//
 	private void InitializeGUI(){
 		menuBar = new Menu();
-		//gamePanel = new SudokuGamePanel();
+		gamePanel = new Board();
 		setJMenuBar(menuBar);
 		menuBar.add(Menu.CreateFileMenu());
 		menuBar.add(Menu.CreateHelpMenu());
 		getContentPane().setLayout(new BorderLayout());
-		//getContentPane().add(gamePanel, BorderLayout.CENTER);
+		getContentPane().add(gamePanel, BorderLayout.CENTER);
 		setSize( 855, 800 );
 		setVisible( true );
 	}
