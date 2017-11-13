@@ -5,7 +5,9 @@ import javax.swing.*;
 public class GUI extends JFrame {
 
 	Menu bar;
-	
+	//private JPanel puzzlePanel;
+	private Menu menuBar;
+
 	public GUI(){
 		super("Battleship");
 		this.setLocation(500, 200);
@@ -13,8 +15,7 @@ public class GUI extends JFrame {
 		setMenu();
 		setGridLayout();
 		
-		setSize(700, 600);
-		setVisible(true);
+		InitializeGUI();
 		
 	}
 	//_______________________________________________________//
@@ -37,10 +38,17 @@ public class GUI extends JFrame {
 	//_______________________________________________________//
 	
 	
-	
-	
-	
-	
+	private void InitializeGUI(){
+		menuBar = new Menu();
+		//gamePanel = new SudokuGamePanel();
+		setJMenuBar(menuBar);
+		menuBar.add(Menu.CreateFileMenu());
+		menuBar.add(Menu.CreateHelpMenu());
+		getContentPane().setLayout(new BorderLayout());
+		//getContentPane().add(gamePanel, BorderLayout.CENTER);
+		setSize( 855, 800 );
+		setVisible( true );
+	}
 	
 	
 	
