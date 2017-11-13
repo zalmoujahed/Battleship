@@ -4,14 +4,13 @@ import javax.swing.*;
 
 public class Menu extends JMenuBar{
 	//private int toggleCheckOnFillFlag;
-	//private static JMenuBar bar;
+	private static JMenuBar bar;
 	private static JMenu fileMenu, helpMenu; // the three menus that will be attached to the JManuBar
 	private static JMenuItem exitItem; // three items for the "File" menu
 	private static JMenuItem rulesItem, connectionItem, aboutItem; // three items for the "Help" menu
 	
 	public Menu(){
-		
-		
+		bar = new JMenuBar();
 	}
 
 	public static JMenu CreateFileMenu(){
