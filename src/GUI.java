@@ -5,6 +5,7 @@ import javax.swing.*;
 public class GUI extends JFrame {
 
 	Menu bar;
+	Container container;
 	
 	public GUI(){
 		super("Battleship");
@@ -23,15 +24,13 @@ public class GUI extends JFrame {
 		bar = new Menu();
 		setJMenuBar(bar);
 		
-		
-		
-		
 	}
 	//_______________________________________________________//	
 	
 	public void setGridLayout(){
 		
-		
+		container = getContentPane();
+		container.setLayout(new BorderLayout());
 		
 	}
 	//_______________________________________________________//
