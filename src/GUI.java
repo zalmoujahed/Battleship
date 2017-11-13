@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class GUI extends JFrame {
 
-	JMenuBar bar;
+	Menu bar;
 	
 	public GUI(){
 		super("Battleship");
@@ -12,6 +12,9 @@ public class GUI extends JFrame {
 		
 		setMenu();
 		setGridLayout();
+		
+		setSize(700, 600);
+		setVisible(true);
 		
 	}
 	//_______________________________________________________//

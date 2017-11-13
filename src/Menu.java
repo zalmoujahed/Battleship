@@ -10,7 +10,7 @@ public class Menu extends JMenuBar{
 	private static JMenuItem rulesItem, connectionItem, aboutItem; // three items for the "Help" menu
 	
 	public Menu(){
-		//bar = new Menu();
+		
 		
 	}
 
