@@ -39,9 +39,8 @@ public class Board extends JPanel{
 	private void CreateGamePanel(){
 		int i = 0;
 		int j = 0;
-	   	grid = new GridLayout(5, 5, 2, 2 );
-	    	innerPanel = new JPanel( grid );
-	    	innerPanel.setOpaque(true);
+	    	innerPanel = new JPanel(new GridLayout(5, 5, 2, 2 ), false);
+	    	//innerPanel.setOpaque(true);
 	    	innerPanel.setBackground(Color.YELLOW);
 	   	for(i = 0; i < 10; i++){
 	   		for(j = 0; j < 10; j++){
