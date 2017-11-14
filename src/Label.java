@@ -10,7 +10,7 @@ public class Label extends JLabel{
 		super(name);
 		
 		if(name == ""){
-			this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+			this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 			ImageIcon icon = createImageIcon("battleship/batt100.gif", "water");
 			this.setIcon(icon);
 		}
