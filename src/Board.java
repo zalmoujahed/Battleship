@@ -11,8 +11,6 @@ import javax.swing.border.BevelBorder;
 public class Board{
 	
 	private ArrayList<ArrayList<Label>> board;
-	
-	
 
 	public Board(){
 		
