@@ -32,13 +32,7 @@ public class GUI extends JFrame {
 		setJMenuBar(menuBar);
 		menuBar.add(Menu.CreateFileMenu());
 		menuBar.add(Menu.CreateHelpMenu());
-//		getContentPane().setLayout(new BorderLayout());
-//		getContentPane().add(gamePanel, BorderLayout.CENTER);
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> fe370c9ddefefeac66fc1567e62a961f28429fb6
 		setSize( 380, 800 );
 
 		setVisible( true );
@@ -57,8 +51,8 @@ public class GUI extends JFrame {
 		userPanel = new Container();
 		userPanel.setLayout(new GridLayout(11, 11, 0, 0));
 		
-		Label boardLabel = new Label("Your Board");
-		userPanel.add(boardLabel);
+//		Label boardLabel = new Label("Your Board");
+//		userPanel.add(boardLabel);
 		
 		opPanel = new Container();
 		opPanel.setLayout(new GridLayout(11, 11, 0, 0));
