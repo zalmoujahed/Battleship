@@ -8,7 +8,7 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.border.BevelBorder;
 
-public class Board extends JPanel{
+public class Board{
 	
 	private ArrayList<ArrayList<Label>> board;
 	
@@ -24,16 +24,13 @@ public class Board extends JPanel{
 		
 		// Create the top label row
 		ArrayList<Label> topRow = new ArrayList<Label>();
-		topRow.add(new Label(""));
 		
-		char c = 'A';
-		for(; c >= 'J'; c++){		//Initialize the labels with chars
-			Label l = new Label(""+ c);
-			l.setBackground(Color.YELLOW);
-			topRow.add(l);
+		String c[] = {" ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
+		for(String s: c){		//Initialize the labels with chars
+			topRow.add(new Label(s));
 		}
 		
-		board.add(0,topRow);
+		board.add(topRow);
 		
 		for(int i = 0; i < 10; i++){
 			
@@ -52,17 +49,5 @@ public class Board extends JPanel{
 		return board;
 	}
 
-//	private void CreateGamePanel(){
-//		int i = 0;
-//		int j = 0;
-//	    	innerPanel = new JPanel(new GridLayout(5, 5, 2, 2 ), false);
-//	    	//innerPanel.setOpaque(true);
-//	    	innerPanel.setBackground(Color.YELLOW);
-//	   	for(i = 0; i < 10; i++){
-//	   		for(j = 0; j < 10; j++){
-//	    			innerPanel.add( boardLabels.get(i).get(j) );
-//	    			}
-//	    		}
-//	    		this.add(innerPanel);
-//	   	}
+
 }

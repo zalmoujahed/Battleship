@@ -13,7 +13,7 @@ public class Label extends JLabel{
 		if(name == ""){
 			this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		}
-		setSize(25, 25);
+		setSize(20, 20);
 		
 	}
 	
