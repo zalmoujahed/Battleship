@@ -55,8 +55,6 @@ public class GUI extends JFrame {
 		opPanel.setLayout(new GridLayout(11, 11, 0, 0));
 		opPanel.setSize(800, 800);
 		
-		userPanel.setBackground(Color.BLUE);
-		opPanel.setBackground(Color.GRAY);
 		for(ArrayList<Label> row : userB.getBoard()){
 			for(Label l : row){
 				userPanel.add(l);
