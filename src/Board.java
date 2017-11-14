@@ -11,8 +11,11 @@ import javax.swing.border.BevelBorder;
 public class Board{
 	
 	private ArrayList<ArrayList<Label>> board;
+<<<<<<< HEAD
 	private Label currentLabel = new Label(" ", -1, -1);
 	
+=======
+>>>>>>> fe370c9ddefefeac66fc1567e62a961f28429fb6
 
 	public Board(){
 		
