@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Image;
 
 import javax.swing.*;
 
@@ -11,22 +12,20 @@ public class Label extends JLabel{
 		
 		if(name == ""){
 			this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-			ImageIcon icon = createImageIcon("battleship/batt100.gif", "water");
-			this.setIcon(icon);
+			setSize(20, 20);
+			
+			ImageIcon imageIcon = new ImageIcon(getClass().getResource("battleship/batt100.gif"), "water"); // load the image to a imageIcon
+			Image image = imageIcon.getImage(); // transform it 
+			Image newimg = image.getScaledInstance(60, 60,  Image.SCALE_SMOOTH); // scale it the smooth way  
+			imageIcon = new ImageIcon(newimg);  // transform it back
+			
+			
+			this.setIcon(imageIcon);
+
 		}
-		setSize(20, 20);
+		this.setHorizontalTextPosition(CENTER);
 		
 	}
-	protected ImageIcon createImageIcon(String path, String description) {
 	
-		java.net.URL imgURL = getClass().getResource(path);
-		if (imgURL != null) {
-			return new ImageIcon(imgURL, description);
-		} 
-		else {
-			System.err.println("Couldn't find file: " + path);
-			return null;
-		}
-	}
 
 }

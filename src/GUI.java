@@ -17,7 +17,7 @@ public class GUI extends JFrame {
 
 	public GUI(){
 		super("Battleship");
-		this.setLocation(300, 200);
+		this.setLocation(200, 30);
 		
 		InitializeGUI();
 		setGridLayout();
@@ -34,7 +34,7 @@ public class GUI extends JFrame {
 		menuBar.add(Menu.CreateHelpMenu());
 //		getContentPane().setLayout(new BorderLayout());
 //		getContentPane().add(gamePanel, BorderLayout.CENTER);
-		setSize( 800, 1600 );
+		setSize( 710, 1400 );
 		setVisible( true );
 	}
 	//_______________________________________________________//	
@@ -50,10 +50,10 @@ public class GUI extends JFrame {
 		
 		userPanel = new Container();
 		userPanel.setLayout(new GridLayout(11, 11, 0, 0));
-		userPanel.setSize(800,800);
+		
 		opPanel = new Container();
 		opPanel.setLayout(new GridLayout(11, 11, 0, 0));
-		opPanel.setSize(800, 800);
+		
 		
 		for(ArrayList<Label> row : userB.getBoard()){
 			for(Label l : row){
