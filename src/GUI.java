@@ -34,7 +34,7 @@ public class GUI extends JFrame {
 		menuBar.add(Menu.CreateHelpMenu());
 //		getContentPane().setLayout(new BorderLayout());
 //		getContentPane().add(gamePanel, BorderLayout.CENTER);
-		setSize( 800, 1600 );
+		setSize( 400, 800 );
 		setVisible( true );
 	}
 	//_______________________________________________________//	
