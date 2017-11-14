@@ -37,11 +37,18 @@ public class Board{
 			ArrayList<Label> row = new ArrayList<Label>();
 			row.add(new Label("" + (i+1)));
 			for(int j = 0; j < 10; j++){
-				row.add(new Label(""));
+				Label l = new Label("");
+				l.addMouseListener(new MouseAdapter() {
+	                @Override
+	                public void mouseClicked(MouseEvent e) {
+	                    System.out.println("no don't do it");
+	                }
+
+	            });
+				row.add(l);
 			}
 			board.add(row);
 		}
-		
 		
 			
 	}
