@@ -7,18 +7,24 @@ public class GUI extends JFrame {
 	private Container container;
 	private Menu menuBar;
 	private Board gamePanel;
-
+	private Container userPanel;
+	private Container opPanel;
+	
+	private UserBoard userB;
+	private OpponentBoard opponentB;
+	
 	
 
 	public GUI(){
 		super("Battleship");
-		this.setLocation(500, 200);
+		this.setLocation(300, 200);
 		
 		InitializeGUI();
 		setGridLayout();
 		
 	}
 	//_______________________________________________________//
+	
 	//_______________________________________________________//
 	private void InitializeGUI(){
 		menuBar = new Menu();
@@ -26,18 +32,46 @@ public class GUI extends JFrame {
 		setJMenuBar(menuBar);
 		menuBar.add(Menu.CreateFileMenu());
 		menuBar.add(Menu.CreateHelpMenu());
-		getContentPane().setLayout(new BorderLayout());
-		getContentPane().add(gamePanel, BorderLayout.CENTER);
-		setSize( 855, 800 );
+//		getContentPane().setLayout(new BorderLayout());
+//		getContentPane().add(gamePanel, BorderLayout.CENTER);
+		setSize( 800, 1600 );
 		setVisible( true );
 	}
 	//_______________________________________________________//	
 	
 	public void setGridLayout(){
 		
-		container = getContentPane();
-		container.setLayout(new BorderLayout());
+		userB = new UserBoard();
+		opponentB = new OpponentBoard();
 		
+		
+		container = getContentPane();
+		container.setLayout(new GridLayout(2, 1));
+		
+		userPanel = new Container();
+		userPanel.setLayout(new GridLayout(11, 11, 0, 0));
+		userPanel.setSize(800,800);
+		opPanel = new Container();
+		opPanel.setLayout(new GridLayout(11, 11, 0, 0));
+		opPanel.setSize(800, 800);
+		
+		userPanel.setBackground(Color.BLUE);
+		opPanel.setBackground(Color.GRAY);
+		for(ArrayList<Label> row : userB.getBoard()){
+			for(Label l : row){
+				userPanel.add(l);
+			}
+		}
+		for(ArrayList<Label> row : opponentB.getBoard()){
+			for(Label l : row){
+				opPanel.add(l);
+			}
+		}
+		
+		container.add(userPanel);
+		container.add(opPanel);
+		
+		setVisible(true);
 		
 		
 	}

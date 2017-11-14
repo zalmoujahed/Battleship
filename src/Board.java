@@ -9,44 +9,60 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.BevelBorder;
 
 public class Board extends JPanel{
-	private JPanel innerPanel;
-	private GridLayout grid;
-	private ArrayList<ArrayList<Label>> boardLabels;
-	private ArrayList<Label> row;
+	
+	private ArrayList<ArrayList<Label>> board;
+	
+	
 
 	public Board(){
-		super();
-		this.setOpaque(true);
-        this.setBackground(Color.BLUE);
-		this.setSize(800, 800);
-		this.setLayout(new GridLayout( 5, 5, 5, 5 ));
-		Create2DArray();
-		CreateGamePanel();
+		
+		board = new ArrayList<ArrayList<Label>>();
+		CreateBoard();
 	}
 
-	private void Create2DArray(){
-		boardLabels = new ArrayList<ArrayList<Label>>(10);
-		for(int i = 0; i < 10; i++){
-			row = new ArrayList<Label>(10);
-			for(int j = 0; j < 10; j++){
-				row.add(new Label());
-				//row.get(j).addMouseListener(new LabelListener());
-			}
-			boardLabels.add(row);
+	private void CreateBoard(){
+		
+		// Create the top label row
+		ArrayList<Label> topRow = new ArrayList<Label>();
+		topRow.add(new Label(""));
+		
+		char c = 'A';
+		for(; c >= 'J'; c++){		//Initialize the labels with chars
+			Label l = new Label(""+ c);
+			l.setBackground(Color.YELLOW);
+			topRow.add(l);
 		}
+		
+		board.add(0,topRow);
+		
+		for(int i = 0; i < 10; i++){
+			
+			ArrayList<Label> row = new ArrayList<Label>();
+			row.add(new Label("" + (i+1)));
+			for(int j = 0; j < 10; j++){
+				row.add(new Label(""));
+			}
+			board.add(row);
+		}
+		
+		
+			
+	}
+	public ArrayList<ArrayList<Label>> getBoard(){
+		return board;
 	}
 
-	private void CreateGamePanel(){
-		int i = 0;
-		int j = 0;
-	    	innerPanel = new JPanel(new GridLayout(5, 5, 2, 2 ), false);
-	    	//innerPanel.setOpaque(true);
-	    	innerPanel.setBackground(Color.YELLOW);
-	   	for(i = 0; i < 10; i++){
-	   		for(j = 0; j < 10; j++){
-	    			innerPanel.add( boardLabels.get(i).get(j) );
-	    			}
-	    		}
-	    		this.add(innerPanel);
-	   	}
+//	private void CreateGamePanel(){
+//		int i = 0;
+//		int j = 0;
+//	    	innerPanel = new JPanel(new GridLayout(5, 5, 2, 2 ), false);
+//	    	//innerPanel.setOpaque(true);
+//	    	innerPanel.setBackground(Color.YELLOW);
+//	   	for(i = 0; i < 10; i++){
+//	   		for(j = 0; j < 10; j++){
+//	    			innerPanel.add( boardLabels.get(i).get(j) );
+//	    			}
+//	    		}
+//	    		this.add(innerPanel);
+//	   	}
 }
