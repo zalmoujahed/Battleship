@@ -11,7 +11,7 @@ import javax.swing.border.BevelBorder;
 public class Board{
 	
 	private ArrayList<ArrayList<Label>> board;
-	
+	private Label currentLabel = new Label(" ", -1, -1);
 	
 
 	public Board(){
@@ -27,21 +27,31 @@ public class Board{
 		
 		String c[] = {" ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
 		for(String s: c){		//Initialize the labels with chars
-			topRow.add(new Label(s));
+			topRow.add(new Label(s, -1, -1));
 		}
 		
 		board.add(topRow);
-		
 		for(int i = 0; i < 10; i++){
 			
 			ArrayList<Label> row = new ArrayList<Label>();
-			row.add(new Label("" + (i+1)));
+			row.add(new Label("" + (i+1), -1, -1));
+			
 			for(int j = 0; j < 10; j++){
-				Label l = new Label("");
+				Label l = new Label("", i, j);
 				l.addMouseListener(new MouseAdapter() {
 	                @Override
 	                public void mouseClicked(MouseEvent e) {
+	                	
 	                    System.out.println("no don't do it");
+	                    Label l = (Label)e.getSource();
+	                  
+	                    
+	                    if(currentLabel != null){
+	                    	currentLabel.changeColor(Color.BLACK);
+	                    }
+	                    l.changeColor(Color.RED);
+	                    System.out.println(l.getRow() + " " + l.getCol());
+	                    currentLabel = l;
 	                }
 
 	            });
