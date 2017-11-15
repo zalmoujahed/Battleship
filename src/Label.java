@@ -16,7 +16,7 @@ public class Label extends JLabel{
 		if(name == ""){
 			this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 			setSize(20, 20);
-			
+			this.setHorizontalAlignment(CENTER);
 			ImageIcon imageIcon = new ImageIcon(getClass().getResource("battleship/batt100.gif"), "water"); 
 			Image image = imageIcon.getImage(); 
 			Image newimg = image.getScaledInstance(this.getWidth()*2, this.getHeight()*2,  Image.SCALE_SMOOTH); 
@@ -26,7 +26,7 @@ public class Label extends JLabel{
 					
 
 		}
-		this.setHorizontalTextPosition(CENTER);
+		
 		
 	}
 	
