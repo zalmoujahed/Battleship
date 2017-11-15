@@ -12,11 +12,14 @@ public class Board{
 	
 	private ArrayList<ArrayList<Label>> board;
 	private Label currentLabel = new Label(" ", -1, -1);
+	private GUI gui;
 	
-	public Board(){
+	
+	public Board(GUI g){
 		
 		board = new ArrayList<ArrayList<Label>>();
 		CreateBoard();
+		gui = g;
 	}
 
 	private void CreateBoard(){
@@ -41,7 +44,7 @@ public class Board{
 	                @Override
 	                public void mouseClicked(MouseEvent e) {
 	                	
-	                    System.out.println("no don't do it");
+	                    
 	                    Label l = (Label)e.getSource();
 	                  
 	                    
@@ -49,6 +52,7 @@ public class Board{
 	                    	currentLabel.changeColor(Color.BLACK);
 	                    }
 	                    l.changeColor(Color.RED);
+	                    gui.printToPanel(l.getRow() + " " + l.getCol());
 	                    System.out.println(l.getRow() + " " + l.getCol());
 	                    currentLabel = l;
 	                }

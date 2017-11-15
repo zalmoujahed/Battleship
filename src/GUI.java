@@ -12,6 +12,7 @@ public class GUI extends JFrame {
 	
 	private UserBoard userB;
 	private OpponentBoard opponentB;
+	JPanel sidePanel;
 	
 	
 
@@ -28,52 +29,86 @@ public class GUI extends JFrame {
 	//_______________________________________________________//
 	private void InitializeGUI(){
 		menuBar = new Menu();
-		gamePanel = new Board();
+		gamePanel = new Board(this);
 		setJMenuBar(menuBar);
 		menuBar.add(Menu.CreateFileMenu());
 		menuBar.add(Menu.CreateHelpMenu());
 
-		setSize( 380, 800 );
+		setSize( 400, 800 );
 
 		setVisible( true );
 	}
 	//_______________________________________________________//	
 	
 	public void setGridLayout(){
-		
-		userB = new UserBoard();
-		opponentB = new OpponentBoard();
-		
-		
+				
 		container = getContentPane();
-		container.setLayout(new GridLayout(2, 1));
+		container.setLayout(new BorderLayout());
 		
-		userPanel = new Container();
-		userPanel.setLayout(new GridLayout(11, 11, 0, 0));
+		Container boards = new Container();
+		boards.setLayout(new GridLayout(2, 1));
 		
-//		Label boardLabel = new Label("Your Board");
-//		userPanel.add(boardLabel);
+		userB = new UserBoard(this);
+		opponentB = new OpponentBoard(this);
+		
+		Container gameBoard1 = new Container();
+		gameBoard1.setLayout(new BorderLayout());
 		
 		opPanel = new Container();
-		opPanel.setLayout(new GridLayout(11, 11, 0, 0));
-		
-		
-		for(ArrayList<Label> row : userB.getBoard()){
-			for(Label l : row){
-				userPanel.add(l);
-			}
-		}
+		opPanel.setLayout(new GridLayout(11, 11, 0, 0));		
 		for(ArrayList<Label> row : opponentB.getBoard()){
 			for(Label l : row){
 				opPanel.add(l);
 			}
 		}
 		
-		container.add(userPanel);
-		container.add(opPanel);
+		JLabel opLabel = new JLabel("Opponent's Board");
+		opLabel.setBackground(Color.DARK_GRAY);
+		gameBoard1.add(opLabel, BorderLayout.NORTH);
+		gameBoard1.add(opPanel, BorderLayout.CENTER);
+		
+		gameBoard1.setSize(380, 400);
+		
+		
+		Container gameBoard2 = new Container();
+		gameBoard2.setLayout(new BorderLayout());
+		
+		userPanel = new Container();
+		userPanel.setLayout(new GridLayout(11, 11, 0, 0));
+		for(ArrayList<Label> row : userB.getBoard()){
+			for(Label l : row){
+				userPanel.add(l);
+			}
+		}
+		
+		JLabel userLabel = new JLabel("Your Board");
+		userLabel.setBackground(Color.darkGray);
+		gameBoard2.add(userLabel, BorderLayout.NORTH);
+		gameBoard2.add(userPanel, BorderLayout.CENTER);
+		gameBoard2.setSize(380, 400);
+		boards.add(gameBoard1);
+		boards.add(gameBoard2);
+		
+		sidePanel = new JPanel();
+		sidePanel.setVisible(true);
+		JLabel l = new JLabel("");
+		l.setSize(25, 25);
+		sidePanel.add(l);
+		container.add(boards);
+		container.add(sidePanel, BorderLayout.EAST);
+		
 		
 		setVisible(true);
 		
+		
+	}
+	
+	public void printToPanel(String s){
+		
+		JLabel l = new JLabel(s);
+		l.setSize(25, 25);
+		sidePanel.add(l);
+		l.setVisible(true);
 		
 	}
 	

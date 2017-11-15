@@ -1,8 +1,11 @@
 
 public class UserBoard extends Board {
 
-	public UserBoard(){
-		super();
+	public UserBoard(GUI g){
+		super(g);
+		//
+		//set up action listeners
+		//
 		
 	}
 }

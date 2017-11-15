@@ -2,8 +2,8 @@
 public class OpponentBoard extends Board{
 
 	
-	public OpponentBoard(){
-		super();
+	public OpponentBoard(GUI g){
+		super(g);
 	}
 	
 }
