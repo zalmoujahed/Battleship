@@ -41,12 +41,7 @@ public class GUI extends JFrame {
 		setJMenuBar(menuBar);
 		menuBar.add(Menu.CreateFileMenu());
 		menuBar.add(Menu.CreateHelpMenu());
-<<<<<<< HEAD
 		menuBar.add(createMoveMenu());
-		
-=======
-		menuBar.add(Menu.CreateConnectionMenu());
->>>>>>> 1e1c91116bd61c34e0fec9f49c6a3e3e14344688
 
 		setSize( 400, 900 );
 
