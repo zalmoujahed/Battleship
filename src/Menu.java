@@ -5,7 +5,7 @@ import javax.swing.*;
 public class Menu extends JMenuBar{
 	//private int toggleCheckOnFillFlag;
 	private static JMenuBar bar;
-	private static JMenu fileMenu, helpMenu; // the three menus that will be attached to the JManuBar
+	private static JMenu fileMenu, helpMenu, connectionMenu; // the three menus that will be attached to the JManuBar
 	private static JMenuItem exitItem; // three items for the "File" menu
 	private static JMenuItem rulesItem, connectionItem, aboutItem; // three items for the "Help" menu
 	
@@ -61,6 +61,21 @@ public class Menu extends JMenuBar{
 	      }
 	    );
 		return helpMenu;
+	}
+	
+	public static JMenu CreateConnectionMenu() {
+		
+		connectionMenu = new JMenu( "Connect" );
+		connectionMenu.setMnemonic( 'C' );
+		
+		connectionMenu.addActionListener( new ActionListener() {
+	    	public void actionPerformed( ActionEvent event ){
+
+	        }
+	      }
+	    );
+		
+		return connectionMenu;
 	}
 
 }
