@@ -8,11 +8,11 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.border.BevelBorder;
 
-public class Board{
+public class Board implements MouseListener{
 	
-	private ArrayList<ArrayList<Label>> board;
-	private Label currentLabel = new Label(" ", -1, -1);
-	private GUI gui;
+	protected ArrayList<ArrayList<Label>> board;
+	protected Label currentLabel = new Label(" ", -1, -1);
+	protected GUI gui;
 	
 	
 	public Board(GUI g){
@@ -40,24 +40,7 @@ public class Board{
 			
 			for(int j = 0; j < 10; j++){
 				Label l = new Label("", i, j);
-				l.addMouseListener(new MouseAdapter() {
-	                @Override
-	                public void mouseClicked(MouseEvent e) {
-	                	
-	                    
-	                    Label l = (Label)e.getSource();
-	                  
-	                    
-	                    if(currentLabel != null){
-	                    	currentLabel.changeColor(Color.BLACK);
-	                    }
-	                    l.changeColor(Color.RED);
-	                    gui.printToPanel(l.getRow() + " " + l.getCol());
-	                    System.out.println(l.getRow() + " " + l.getCol());
-	                    currentLabel = l;
-	                }
-
-	            });
+				l.addMouseListener( this);
 				row.add(l);
 			}
 			board.add(row);
@@ -68,6 +51,43 @@ public class Board{
 	public ArrayList<ArrayList<Label>> getBoard(){
 		return board;
 	}
+	
+	public void mouseClicked(MouseEvent e) {
+		Label l = (Label)e.getSource();
+        
+        if(currentLabel != null){
+        	currentLabel.changeColor(Color.BLACK);
+        }
+        l.changeColor(Color.RED);
+        gui.printToPanel(l.getRow() + " " + l.getCol());
+        System.out.println(l.getRow() + " " + l.getCol());
+        currentLabel = l;
+        gui.repaint();
+		
+	}
 
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

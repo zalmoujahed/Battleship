@@ -34,7 +34,7 @@ public class GUI extends JFrame {
 		menuBar.add(Menu.CreateFileMenu());
 		menuBar.add(Menu.CreateHelpMenu());
 
-		setSize( 400, 800 );
+		setSize( 500, 900 );
 
 		setVisible( true );
 	}
@@ -91,11 +91,12 @@ public class GUI extends JFrame {
 		
 		sidePanel = new JPanel();
 		sidePanel.setVisible(true);
-		JLabel l = new JLabel("");
+		JLabel l = new JLabel(" ");
 		l.setSize(25, 25);
 		sidePanel.add(l);
+		l.setVisible(true);
 		container.add(boards);
-		container.add(sidePanel, BorderLayout.EAST);
+		container.add(sidePanel, BorderLayout.SOUTH);
 		
 		
 		setVisible(true);
@@ -107,13 +108,11 @@ public class GUI extends JFrame {
 		
 		JLabel l = new JLabel(s);
 		l.setSize(25, 25);
+		sidePanel.removeAll();
 		sidePanel.add(l);
 		l.setVisible(true);
 		
 	}
-	
-	
-	
 	
 	
 	

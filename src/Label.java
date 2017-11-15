@@ -19,7 +19,7 @@ public class Label extends JLabel{
 			
 			ImageIcon imageIcon = new ImageIcon(getClass().getResource("battleship/batt100.gif"), "water"); 
 			Image image = imageIcon.getImage(); 
-			Image newimg = image.getScaledInstance(30, 30,  Image.SCALE_SMOOTH); 
+			Image newimg = image.getScaledInstance(this.getWidth()*2, this.getHeight()*2,  Image.SCALE_SMOOTH); 
 			imageIcon = new ImageIcon(newimg);  
 			
 			this.setIcon(imageIcon);
