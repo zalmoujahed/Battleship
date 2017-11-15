@@ -4,13 +4,16 @@ import javax.swing.*;
 
 public class Menu extends JMenuBar{
 	//private int toggleCheckOnFillFlag;
+	private GUI gui;
 	private static JMenuBar bar;
-	private static JMenu fileMenu, helpMenu, connectionMenu; // the three menus that will be attached to the JManuBar
-	private static JMenuItem exitItem; // three items for the "File" menu
-	private static JMenuItem rulesItem, connectionItem, aboutItem; // three items for the "Help" menu
+	private static JMenu fileMenu, helpMenu, connectionMenu, moveMenu, addShipMenu; // the menus that will be attached to the JManuBar
+	private static JMenuItem exitItem; //  items for the "File" menu
+	private static JMenuItem rulesItem, connectionItem, aboutItem; //  items for the "Help" menu
 	
-	public Menu(){
+	
+	public Menu(GUI g){
 		bar = new JMenuBar();
+		gui = g;
 	}
 
 	public static JMenu CreateFileMenu(){
@@ -42,7 +45,7 @@ public class Menu extends JMenuBar{
 		helpMenu.add(connectionItem);
 		rulesItem.addActionListener( new ActionListener() {
 	    	public void actionPerformed( ActionEvent event ){
-
+	    		
 	        }
 	      }
 	    );
@@ -77,5 +80,6 @@ public class Menu extends JMenuBar{
 		
 		return connectionMenu;
 	}
-
+	
+	
 }

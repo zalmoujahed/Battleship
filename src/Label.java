@@ -6,12 +6,14 @@ import javax.swing.*;
 public class Label extends JLabel{
 	
 	private int row, col;
+	private boolean hasShip;
 	
 	public Label(String name, int x, int y) {
 		
 		super(name);
 		row = x; 
 		col = y;
+		hasShip = false;
 		
 		if(name == ""){
 			this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
@@ -39,6 +41,14 @@ public class Label extends JLabel{
 	public int getCol(){
 		return col;
 	}
-	
+	public void changeImage(String path){
+		ImageIcon imageIcon = new ImageIcon(getClass().getResource(path)); 
+		Image image = imageIcon.getImage(); 
+		Image newimg = image.getScaledInstance(this.getWidth()*2, this.getHeight()*2,  Image.SCALE_SMOOTH); 
+		imageIcon = new ImageIcon(newimg);  
+		
+		this.setIcon(imageIcon);
+		
+	}
 
 }
