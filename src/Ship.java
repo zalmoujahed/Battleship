@@ -57,6 +57,12 @@ public class Ship {
 	public int getLength(){
 		return length;
 	}
+	public ArrayList<String> getShipHorizontal(){
+		return iconNamesHorizontal;
+	}
+	public ArrayList<String> getShipVertical(){
+		return iconNamesVertical;
+	}
 	
 	
 }

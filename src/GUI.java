@@ -55,20 +55,23 @@ public class GUI extends JFrame {
 		for(Ship s: Ships){
 			addShipMenu.add(s.getShipItem());
 			s.getShipItem().addActionListener(new ActionListener(){
+				
 				public void actionPerformed( ActionEvent event ){
 		    		JMenuItem item = (JMenuItem) event.getSource();
-		    		
-		    		for(Ship s : Ships)
-		    			if(s.getName() == item.getText() ){
-		    				s.setChosen(true);
-		    				if(curShipIndex != -1 && curShipIndex != s.getIndex()){
+		    		if(curShipIndex != -1){
+		    			s.setChosen(true);
+		    		}
+		    		for(Ship s2 : Ships)
+		    			if(s2.getName() == item.getText() ){
+		    				s2.setChosen(true);
+		    				if(curShipIndex != -1 && curShipIndex != s2.getIndex()){
 		    					if(!Ships.get(curShipIndex).isInWater()){
 		    						Ships.get(curShipIndex).setChosen(false);
 		    						Ships.get(curShipIndex).getShipItem().setEnabled(true);
 		    					}
 		    				}
-		    				s.getShipItem().setEnabled(false);
-		    				curShipIndex = s.getIndex();
+		    				s2.getShipItem().setEnabled(false);
+		    				curShipIndex = s2.getIndex();
 		    			}
 		        }
 			});
@@ -158,19 +161,27 @@ public class GUI extends JFrame {
 		destroyedV.add("battleship/batt205.gif");
 		destroyedV.add("battleship/batt206.gif");
 		
-		Ships.add(new Ship( 5, "Aircraft Carrier", 0 , pathNamesH, pathNamesV, destroyedH, destroyedV));
-		pathNamesH.remove(2);
-		pathNamesV.remove(2);
-		Ships.add(new Ship( 4, "Battleship", 1 , pathNamesH, pathNamesV, destroyedH, destroyedV));
-		pathNamesH.remove(1);
-		pathNamesV.remove(1);
-		Ships.add(new Ship( 3, "Destroyer", 2 , pathNamesH, pathNamesV, destroyedH, destroyedV));
-		Ships.add(new Ship( 3, "Submarine", 3 , pathNamesH, pathNamesV, destroyedH, destroyedV));
-		pathNamesH.remove(1);
-		pathNamesV.remove(1);
-		destroyedH.remove(1);
-		destroyedV.remove(1);
-		Ships.add(new Ship( 2, "Patrol Boat", 4 , pathNamesH, pathNamesV, destroyedH, destroyedV));
+		Ships.add(0, new Ship( 5, "Aircraft Carrier", 0 , pathNamesH, pathNamesV, destroyedH, destroyedV));
+		ArrayList<String> pNH4 = (ArrayList<String>) pathNamesH.clone();
+		ArrayList<String> pNV4 = (ArrayList<String>) pathNamesV.clone();
+		pNH4.remove(2);
+		pNV4.remove(2);
+		Ships.add(1, new Ship( 4, "Battleship", 1 , pNH4, pNV4, destroyedH, destroyedV));
+		ArrayList<String> pNH3 = (ArrayList<String>) pNH4.clone();
+		ArrayList<String> pNV3 = (ArrayList<String>) pNV4.clone();
+		pNH3.remove(1);
+		pNV3.remove(1);
+		Ships.add(2, new Ship( 3, "Destroyer", 2 , pNH3, pNV3, destroyedH, destroyedV));
+		Ships.add(3, new Ship( 3, "Submarine", 3 , pNH3, pNV3, destroyedH, destroyedV));
+		ArrayList<String> pNH2 = (ArrayList<String>) pNH3.clone();
+		ArrayList<String> pNV2 = (ArrayList<String>) pNV3.clone();
+		ArrayList<String> destH = (ArrayList<String>) destroyedH.clone();
+		ArrayList<String> destV = (ArrayList<String>) destroyedV.clone();
+		pNH2.remove(1);
+		pNV2.remove(1);
+		destH.remove(1);
+		destV.remove(1);
+		Ships.add(4, new Ship( 2, "Patrol Boat", 4 , pNH2, pNV2, destH, destV));
 				
 		
 	}	
@@ -180,8 +191,8 @@ public class GUI extends JFrame {
 		this.repaint();
 	}
 	//_______________________________________________________//
-	public void addShip(int shipIndex){
-		 
+	public void resetChosenShip(){
+		 curShipIndex = -1;
 	}
 	//_______________________________________________________//
 	
