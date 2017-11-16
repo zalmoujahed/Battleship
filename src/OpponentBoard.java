@@ -2,10 +2,12 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 
 public class OpponentBoard extends Board{
-
 	
-	public OpponentBoard(GUI g){
+	private boolean turn;
+	
+	public OpponentBoard(GUI g, boolean gameStarted, boolean t){
 		super(g);
+		turn = t;
 	}
 	
 	@Override
@@ -21,6 +23,26 @@ public class OpponentBoard extends Board{
         currentLabel = l;
         gui.repaint();
 		
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		
+		Label l = (Label)e.getSource();
+		if(gui.gameHasBegun()){
+		
+	        if( l.getText() == ""  && !currentLabel.isChosen() ){
+	        	
+	        	//Erase previous markings
+	        	if(this.currentLabel != null && !currentLabel.isChosen()&& currentLabel.getText() == ""){
+		        	currentLabel.changeColor(Color.BLACK);
+		        	
+		        }
+	        			        
+		        l.changeColor(Color.RED);
+		        currentLabel = l;
+	        }
+	        
+		}
 	}
 	
 }

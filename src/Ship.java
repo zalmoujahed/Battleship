@@ -28,6 +28,17 @@ public class Ship {
 		Chosen = false;
 		shipItem = new JMenuItem(name);
 		
+		if(length == 4){
+			destroyedH.add(destroyedH.get(1));
+			destroyedV.add(1,destroyedV.get(1));			
+		}
+		if(length == 5){
+			destroyedH.add(destroyedH.get(1));
+			destroyedV.add(1,destroyedV.get(1));
+			destroyedH.add(destroyedH.get(1));
+			destroyedV.add(1,destroyedV.get(1));
+		}
+		
 	}
 	
 	public void setChosen(boolean chosen){

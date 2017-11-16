@@ -43,7 +43,7 @@ public class Label extends JLabel{
 	public void changeImage(String path){
 		ImageIcon imageIcon = new ImageIcon(getClass().getResource(path)); 
 		Image image = imageIcon.getImage(); 
-		Image newimg = image.getScaledInstance(this.getWidth()*2, this.getHeight()*2,  Image.SCALE_SMOOTH); 
+		Image newimg = image.getScaledInstance(40, 40,  Image.SCALE_SMOOTH); 
 		imageIcon = new ImageIcon(newimg);  
 		
 		this.setIcon(imageIcon);

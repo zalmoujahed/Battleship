@@ -24,7 +24,7 @@ public class Client implements Runnable{
 	public void client() throws IOException {
 		try {
 			// echoSocket = new Socket("taranis", 7);
-			echoSocket = new Socket("192.168.1.71", 34343);
+			echoSocket = new Socket("10.5.220.77", 34343);
 			out = new PrintWriter(echoSocket.getOutputStream(), true);
 			in = new BufferedReader(new InputStreamReader(
 					echoSocket.getInputStream()));
