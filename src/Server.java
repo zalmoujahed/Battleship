@@ -1,9 +1,14 @@
 import java.net.*; 
+import javax.swing.*;
 import java.io.*;
 
 public class Server implements Runnable{
 
 	ServerSocket connectionSocket = null; 
+	PrintWriter send = null;
+	BufferedReader recieve = null;
+	
+	Socket communicationSocket = null; 
 
 	public Server() throws IOException{
 		Thread t1 = new Thread(new Runnable() {
@@ -22,7 +27,11 @@ public class Server implements Runnable{
 	public void serve() throws IOException {
 
 		try { 
+			JOptionPane.showMessageDialog( null,
+	                "You are now hosting" );
+			
 			connectionSocket = new ServerSocket(34343); 
+			
 			System.out.println ("Socket open on Port: " +
 					connectionSocket.getLocalPort());
 			InetAddress addr = InetAddress.getLocalHost();
@@ -36,7 +45,7 @@ public class Server implements Runnable{
 			System.exit(1); 
 		} 
 
-		Socket communicationSocket = null; 
+		
 
 		try { 
 			communicationSocket = connectionSocket.accept(); 
@@ -57,25 +66,26 @@ public class Server implements Runnable{
 		//TODO: receive hits to the user board 
 		//receive two ints specifying coord of hit 
 		//check if user ships have been hit
-
-		PrintWriter out = new PrintWriter(communicationSocket.getOutputStream(), 
-				true); 
-		BufferedReader in = new BufferedReader( 
-				new InputStreamReader(System.in)); 
+	
+		send = new PrintWriter(communicationSocket.getOutputStream(), true);
+		recieve = new BufferedReader(new InputStreamReader(
+				communicationSocket.getInputStream()));
+		
 
 		String inputLine; 
 
-		while ((inputLine = in.readLine()) != null) 
+		while ((inputLine = recieve.readLine()) != null) 
 		{
 			System.out.println ("Server: " + inputLine); 
-			out.println(inputLine); 
+			send.println(inputLine); 
+			System.out.println("Client: " + recieve.readLine());
 
 			if (inputLine.equals("Bye.")) 
 				break; 
 		} 
 
-		out.close(); 
-		in.close(); 
+		send.close(); 
+		recieve.close(); 
 		communicationSocket.close(); 
 		connectionSocket.close(); 
 	}

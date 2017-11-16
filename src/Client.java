@@ -1,11 +1,13 @@
 import java.io.*;
 import java.net.*;
 
+import javax.swing.JOptionPane;
+
 public class Client implements Runnable{
 
 	Socket echoSocket = null;
-	PrintWriter out = null;
-	BufferedReader in = null;
+	PrintWriter send = null;
+	BufferedReader recieve = null;
 
 	public Client() throws IOException{
 		Thread t1 = new Thread(new Runnable() {
@@ -27,8 +29,8 @@ public class Client implements Runnable{
 			
 			echoSocket = new Socket("10.16.212.32", 34343);
 
-			out = new PrintWriter(echoSocket.getOutputStream(), true);
-			in = new BufferedReader(new InputStreamReader(
+			send = new PrintWriter(echoSocket.getOutputStream(), true);
+			recieve = new BufferedReader(new InputStreamReader(
 					echoSocket.getInputStream()));
 		} catch (UnknownHostException e) {
 			System.err.println("Don't know about host: taranis.");
@@ -38,18 +40,22 @@ public class Client implements Runnable{
 					+ "the connection to: taranis.");
 			System.exit(1);
 		}
+		
+		JOptionPane.showMessageDialog( null,
+                "You are now connected to the host" );
 
 		BufferedReader stdIn = new BufferedReader(
 				new InputStreamReader(System.in));
 		String userInput;
 
 		while ((userInput = stdIn.readLine()) != null) {
-			out.println(userInput);
-			System.out.println("Client: " + in.readLine());
+			send.println(userInput);
+			System.out.println("Client: " + userInput);
+			System.out.println("Server: " + recieve.readLine());
 		}
 
-		out.close();
-		in.close();
+		send.close();
+		recieve.close();
 		stdIn.close();
 		echoSocket.close();
 	}
