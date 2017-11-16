@@ -4,8 +4,11 @@ import java.io.*;
 public class Server implements Runnable{
 
 	ServerSocket connectionSocket = null; 
+	GUI gui;
 
-	public Server() throws IOException{
+	public Server(GUI g) throws IOException{
+		
+		gui = g;
 		Thread t1 = new Thread(new Runnable() {
 			public void run() {
 				try {

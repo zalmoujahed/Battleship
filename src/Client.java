@@ -6,8 +6,12 @@ public class Client implements Runnable{
 	Socket echoSocket = null;
 	PrintWriter out = null;
 	BufferedReader in = null;
+	GUI gui;
 
-	public Client() throws IOException{
+	public Client(GUI g) throws IOException{
+		
+		gui = g;
+		
 		Thread t1 = new Thread(new Runnable() {
 			public void run() {
 				try {
@@ -25,7 +29,7 @@ public class Client implements Runnable{
 		try {
 			// echoSocket = new Socket("taranis", 7);
 			
-			echoSocket = new Socket("10.16.212.32", 34343);
+			echoSocket = new Socket("10.5.220.77", 34343);
 
 			out = new PrintWriter(echoSocket.getOutputStream(), true);
 			in = new BufferedReader(new InputStreamReader(

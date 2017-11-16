@@ -56,7 +56,7 @@ public class GUI extends JFrame {
 	//_______________________________________________________//	
 	public JMenu createMoveMenu(){
 		addShipMenu = new JMenu("Add Ship");
-		
+		addShipMenu.setEnabled(false);
 		for(Ship s: Ships){
 			addShipMenu.add(s.getShipItem());
 			s.getShipItem().addActionListener(new ActionListener(){
@@ -102,7 +102,7 @@ public JMenu CreateConnectionMenu() {
 	    	public void actionPerformed( ActionEvent event ){
 	    		//TODO:call server here 
 	    		try {
-	    				Server server = new Server();
+	    				Server server = new Server(getGui());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -113,11 +113,10 @@ public JMenu CreateConnectionMenu() {
 		
 		connectItem.addActionListener( new ActionListener() {
 	    	public void actionPerformed( ActionEvent event ){
-	    		//TODO:call client here 
 	    		try {
-					Client client = new Client();
+					Client client = new Client(getGui());
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 	        }
@@ -127,10 +126,10 @@ public JMenu CreateConnectionMenu() {
 		return connectionMenu;
 	}
 
-    //_______________________________________________________//	
-
+    //_______________________________________________________//
 	public JMenuItem createStartButton(){
 		start = new JMenuItem("Start Game");
+		start.setEnabled(false);
 		start.addActionListener(new ActionListener(){
 			
 			public void actionPerformed(ActionEvent e) {
@@ -139,8 +138,13 @@ public JMenu CreateConnectionMenu() {
 			}
 			
 		});
-		start.setEnabled(true);
+		//start.setEnabled(true);
 		return start;
+	}
+	//_______________________________________________________//	
+	public void startGame(){
+		start.setEnabled(true);
+		addShipMenu.setEnabled(true);
 	}
 	//_______________________________________________________//	
 	public void setGridLayout(){
@@ -258,5 +262,9 @@ public JMenu CreateConnectionMenu() {
 	//_______________________________________________________//
 	public boolean gameHasBegun(){
 		return gameBegun;
+	}
+	//_______________________________________________________//
+	public GUI getGui(){
+		return this;
 	}
 }
