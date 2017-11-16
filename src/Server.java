@@ -5,12 +5,18 @@ import java.io.*;
 public class Server implements Runnable{
 
 	ServerSocket connectionSocket = null; 
+<<<<<<< HEAD
 	PrintWriter send = null;
 	BufferedReader recieve = null;
 	
 	Socket communicationSocket = null; 
+=======
+	GUI gui;
+>>>>>>> 2584c2d01f82f1d56bb09819af4257dc7c120f49
 
-	public Server() throws IOException{
+	public Server(GUI g) throws IOException{
+		
+		gui = g;
 		Thread t1 = new Thread(new Runnable() {
 			public void run() {
 				try {
