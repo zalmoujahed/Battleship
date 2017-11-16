@@ -46,6 +46,17 @@ public class Server implements Runnable{
 			System.err.println("Accept failed."); 
 			System.exit(1); 
 		} 
+		
+		//TODO: send hits that are input into opponent board
+		//send two ints specifying coord of hit
+		//parse inside of while loop
+		//update the board inside of while loop method that takes in those params
+		//check if opponent ship has been hit
+		//update opponent board with images where user hits regardless
+		
+		//TODO: receive hits to the user board 
+		//receive two ints specifying coord of hit 
+		//check if user ships have been hit
 
 		PrintWriter out = new PrintWriter(communicationSocket.getOutputStream(), 
 				true); 
@@ -55,7 +66,7 @@ public class Server implements Runnable{
 		String inputLine; 
 
 		while ((inputLine = in.readLine()) != null) 
-		{ 
+		{
 			System.out.println ("Server: " + inputLine); 
 			out.println(inputLine); 
 
