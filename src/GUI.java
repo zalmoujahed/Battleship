@@ -11,18 +11,21 @@ public class GUI extends JFrame {
 
 	private Container container;
 	private Menu menuBar;
+	private JMenuItem start;
 	private Container userPanel;
 	private Container opPanel;
 	
 	private UserBoard userB;
 	private OpponentBoard opponentB;
 	private JLabel statusBar;
+	private static boolean yourTurn = false;
+	private static boolean gameBegun = false;
 	
 	int curShipIndex = -1;
 	
 	private ArrayList<Ship> Ships;
 	
-	private static JMenu moveMenu, addShipMenu; 
+	private static JMenu  addShipMenu; 
 	
 
 	public GUI(){
@@ -43,14 +46,13 @@ public class GUI extends JFrame {
 		menuBar.add(Menu.CreateHelpMenu());
 		menuBar.add(Menu.CreateConnectionMenu());
 		menuBar.add(createMoveMenu());
-
+		menuBar.add(createStartButton());
 		setSize( 400, 900 );
 
 		setVisible( true );
 	}
 	//_______________________________________________________//	
 	public JMenu createMoveMenu(){
-		moveMenu = new JMenu("Make Move");
 		addShipMenu = new JMenu("Add Ship");
 		
 		for(Ship s: Ships){
@@ -78,11 +80,23 @@ public class GUI extends JFrame {
 			});
 		}
 
-		moveMenu.add(addShipMenu);
-		return moveMenu;		
+		return addShipMenu;		
 	}
-
-	
+	//_______________________________________________________//	
+	public JMenuItem createStartButton(){
+		start = new JMenuItem("Start Game");
+		start.addActionListener(new ActionListener(){
+			
+			public void actionPerformed(ActionEvent e) {
+				start.setEnabled(false);
+				gameBegun = !gameBegun;
+			}
+			
+		});
+		start.setEnabled(true);
+		return start;
+	}
+	//_______________________________________________________//	
 	public void setGridLayout(){
 		
 		//Outside container
@@ -94,7 +108,7 @@ public class GUI extends JFrame {
 		boards.setLayout(new GridLayout(2, 1));
 		
 		//Set up opponent board	
-		opponentB = new OpponentBoard(this);
+		opponentB = new OpponentBoard(this, gameBegun, yourTurn);
 		opPanel = new Container();
 		opPanel.setLayout(new GridLayout(11, 11, 0, 0));		
 		for(ArrayList<Label> row : opponentB.getBoard()){
@@ -196,5 +210,7 @@ public class GUI extends JFrame {
 		 curShipIndex = -1;
 	}
 	//_______________________________________________________//
-	
+	public boolean gameHasBegun(){
+		return gameBegun;
+	}
 }

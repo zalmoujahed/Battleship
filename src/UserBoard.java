@@ -7,12 +7,16 @@ public class UserBoard extends Board {
 	private ArrayList<Ship> Ships;
 	private int shipChosen;
 	private Label curNeighbor; 
+	private int hits, misses;
+	
 	
 	
 	public UserBoard(GUI g, ArrayList<Ship> ships){
 		super(g);
 		Ships = ships;
 		shipChosen = -1;
+		hits = 0;
+		misses = 0;
 	}
 	
 	@Override
@@ -106,8 +110,7 @@ public class UserBoard extends Board {
 			}
 		}
 		return i;
-	}
-	
+	}	
 	public void fillInShip(){
 		if(currentLabel.getRow() != curNeighbor.getRow()){			//North or south
 
@@ -203,9 +206,9 @@ public class UserBoard extends Board {
 		}
 		
 	}
+	// Reset the borders and variables after a ship is added
 	public void resetBoard(){
-		//Erase previous markings
-    	
+		   	
     	currentLabel.changeColor(Color.BLACK);
     	if(currentLabel.getNorth() != -1){
 			board.get(currentLabel.getNorth()+1).get(currentLabel.getCol()+1).changeColor(Color.BLACK);
@@ -219,8 +222,6 @@ public class UserBoard extends Board {
 		if(currentLabel.getWest() != -1){
 			board.get(currentLabel.getRow()+1).get(currentLabel.getWest()+1).changeColor(Color.BLACK);
 		}
-
-    	
     	currentLabel.setChosen(false);
     	gui.resetChosenShip();
     	Ships.get(shipChosen).setChosen(false);
@@ -228,4 +229,26 @@ public class UserBoard extends Board {
     	curNeighbor = null;
 	}
 	
+	public void updateBoard(int row, int col){
+		if(checkHit(row, col)){
+			hits++;
+		}
+		else{
+			misses++;
+		}
+	}
+	
+	public boolean checkHit(int row, int col){
+		if(board.get(row).get(col).hasShip()){
+			return true;
+		}
+		else 
+			return false;
+	}
+	public int getHits(){
+		return hits;
+	}
+	public int getMisses(){
+		return misses;
+	}
 }
