@@ -4,9 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
-import javax.swing.border.BevelBorder;
 
 public class Board implements MouseListener{
 	
@@ -65,7 +62,7 @@ public class Board implements MouseListener{
         gui.repaint();
 		
 	}
-
+	
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub

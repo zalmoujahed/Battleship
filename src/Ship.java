@@ -54,6 +54,9 @@ public class Ship {
 	public int getIndex(){
 		return index;
 	}
+	public int getLength(){
+		return length;
+	}
 	
 	
 }

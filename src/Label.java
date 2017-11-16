@@ -7,6 +7,8 @@ public class Label extends JLabel{
 	
 	private int row, col;
 	private boolean hasShip;
+	private boolean Chosen;
+	private int north, south, east, west = -1;
 	
 	public Label(String name, int x, int y) {
 		
@@ -24,12 +26,9 @@ public class Label extends JLabel{
 			Image newimg = image.getScaledInstance(this.getWidth()*2, this.getHeight()*2,  Image.SCALE_SMOOTH); 
 			imageIcon = new ImageIcon(newimg);  
 			
-			this.setIcon(imageIcon);
-					
+			this.setIcon(imageIcon);	
 
 		}
-		
-		
 	}
 	
 	public void changeColor(Color c){
@@ -50,5 +49,34 @@ public class Label extends JLabel{
 		this.setIcon(imageIcon);
 		
 	}
+	public void setChosen(boolean chosen){
+		Chosen = chosen;
+	}
+	public boolean isChosen(){
+		return Chosen;
+	}
+	public void resetNeighbors(){
+		north = south = west = east = -1;
+	}
+	public void setNeighbors(int length){
+		resetNeighbors();
+		
+		if(row + length - 1  < 10){
+			south = row + length - 1;
+		}
+		if(row - length + 1> -1){
+			north = row - length + 1;
+		}
+		if(col + length - 1 < 10){
+			east = col + length - 1;
+		}
+		if(col - length + 1 > -1){
+			west = col - length + 1;
+		}
+	}
+	public int getNorth(){return north;}
+	public int getSouth(){return south;}
+	public int getEast(){return east;}
+	public int getWest(){return west;}
 
 }
