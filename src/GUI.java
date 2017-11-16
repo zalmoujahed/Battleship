@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.event.*;
@@ -11,6 +12,7 @@ public class GUI extends JFrame {
 
 	private Container container;
 	private Menu menuBar;
+	private JMenu connectionMenu;
 	private JMenuItem start;
 	private Container userPanel;
 	private Container opPanel;
@@ -26,7 +28,7 @@ public class GUI extends JFrame {
 	private ArrayList<Ship> Ships;
 	
 	private static JMenu  addShipMenu; 
-	
+	private static JMenuItem hostItem, connectItem;
 
 	public GUI(){
 		super("Battleship");
@@ -44,7 +46,7 @@ public class GUI extends JFrame {
 		setJMenuBar(menuBar);
 		menuBar.add(Menu.CreateFileMenu());
 		menuBar.add(Menu.CreateHelpMenu());
-		menuBar.add(Menu.CreateConnectionMenu());
+		menuBar.add(CreateConnectionMenu());
 		menuBar.add(createMoveMenu());
 		menuBar.add(createStartButton());
 		setSize( 400, 900 );
@@ -83,6 +85,50 @@ public class GUI extends JFrame {
 		return addShipMenu;		
 	}
 	//_______________________________________________________//	
+	
+public JMenu CreateConnectionMenu() {
+		
+		connectionMenu = new JMenu( "Connect" );
+		connectionMenu.setMnemonic( 'C' );
+		hostItem = new JMenuItem( "Host Game" );
+		connectItem = new JMenuItem( "Connect Game" );
+
+		connectionMenu.add(hostItem);
+		connectionMenu.addSeparator();
+		connectionMenu.add(connectItem);
+		connectionMenu.addSeparator();
+		
+		hostItem.addActionListener( new ActionListener() {
+	    	public void actionPerformed( ActionEvent event ){
+	    		//TODO:call server here 
+	    		try {
+	    				Server server = new Server();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        }
+	      }
+	    );
+		
+		connectItem.addActionListener( new ActionListener() {
+	    	public void actionPerformed( ActionEvent event ){
+	    		//TODO:call client here 
+	    		try {
+					Client client = new Client();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        }
+	      }
+	    );
+		
+		return connectionMenu;
+	}
+
+    //_______________________________________________________//	
+
 	public JMenuItem createStartButton(){
 		start = new JMenuItem("Start Game");
 		start.addActionListener(new ActionListener(){
