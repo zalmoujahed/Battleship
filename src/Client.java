@@ -6,14 +6,13 @@ import javax.swing.JOptionPane;
 public class Client implements Runnable{
 
 	Socket echoSocket = null;
-<<<<<<< HEAD
+
 	PrintWriter send = null;
 	BufferedReader recieve = null;
-=======
+
 	PrintWriter out = null;
 	BufferedReader in = null;
 	GUI gui;
->>>>>>> 2584c2d01f82f1d56bb09819af4257dc7c120f49
 
 	public Client(GUI g) throws IOException{
 		
