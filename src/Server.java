@@ -5,11 +5,11 @@ import java.io.*;
 public class Server implements Runnable{
 
 	ServerSocket connectionSocket = null; 
+
 	PrintWriter send = null;
 	BufferedReader recieve = null;
 	
 	Socket communicationSocket = null; 
-
 	GUI gui;
 
 	public Server(GUI g) throws IOException{

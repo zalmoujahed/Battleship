@@ -35,7 +35,7 @@ public class Client implements Runnable{
 		try {
 			// echoSocket = new Socket("taranis", 7);
 			
-			echoSocket = new Socket("10.5.220.77", 34343);
+			echoSocket = new Socket("10.16.212.32", 34343);
 
 			send = new PrintWriter(echoSocket.getOutputStream(), true);
 			recieve = new BufferedReader(new InputStreamReader(
