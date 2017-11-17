@@ -34,13 +34,10 @@ public class Client implements Runnable{
 	public void client() throws IOException {
 		try {
 			
-<<<<<<< HEAD
-			//echoSocket = new Socket("10.16.212.32", 34343);
-			echoSocket = new Socket("10.5.220.77", 34343);
-=======
-			echoSocket = new Socket("10.16.212.32", 34343);
 
->>>>>>> b21e93a946379683e74ef8e2d2f84bceadcb835a
+			echoSocket = new Socket("10.16.212.32", 34343);
+			//echoSocket = new Socket("10.5.220.77", 34343);
+			
 			send = new PrintWriter(echoSocket.getOutputStream(), true);
 			recieve = new BufferedReader(new InputStreamReader(
 					echoSocket.getInputStream()));
