@@ -31,7 +31,7 @@ public class Server implements Runnable{
 	public void serve() throws IOException {
 
 		try { 
-			JOptionPane.showMessageDialog( null,
+			JOptionPane.showMessageDialog( gui,
 	                "You are now hosting" );
 			
 			connectionSocket = new ServerSocket(34343); 
@@ -71,6 +71,7 @@ public class Server implements Runnable{
 		//receive two ints specifying coord of hit 
 		//check if user ships have been hit
 	
+		gui.startGame();
 		send = new PrintWriter(communicationSocket.getOutputStream(), true);
 		recieve = new BufferedReader(new InputStreamReader(
 				communicationSocket.getInputStream()));

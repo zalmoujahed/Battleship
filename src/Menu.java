@@ -6,11 +6,11 @@ import javax.swing.*;
 
 public class Menu extends JMenuBar{
 	//private int toggleCheckOnFillFlag;
-	private GUI gui;
+	private static GUI gui;
 	private static JMenuBar bar;
-	private static JMenu fileMenu, helpMenu,  moveMenu, addShipMenu; // the menus that will be attached to the JManuBar
+	private static JMenu fileMenu, helpMenu; ; // the menus that will be attached to the JManuBar
 	private static JMenuItem exitItem; //  items for the "File" menu
-	private static JMenuItem rulesItem, connectionItem, aboutItem; //  items for the "Help" menu
+	private static JMenuItem rulesItem, connectionItem, aboutItem, aboutGameItem; //  items for the "Help" menu
 	
 	
 	public Menu(GUI g){
@@ -27,7 +27,7 @@ public class Menu extends JMenuBar{
 		
 	    exitItem.addActionListener( new ActionListener() {
 	    	public void actionPerformed( ActionEvent event ){
-
+	    		System.exit(0);
 	        }
 	      }
 	    );
@@ -38,7 +38,8 @@ public class Menu extends JMenuBar{
 		helpMenu = new JMenu( "Help" );
 		helpMenu.setMnemonic( 'H' );
 		rulesItem = new JMenuItem( "How to play Battleship" );
-		aboutItem = new JMenuItem( "About" );
+		aboutItem = new JMenuItem( "About Us" );
+		aboutGameItem = new JMenuItem("About Battleship");
 		connectionItem = new JMenuItem("Connection Help");
 		helpMenu.add(rulesItem);
 		helpMenu.addSeparator();
@@ -47,7 +48,16 @@ public class Menu extends JMenuBar{
 		helpMenu.add(connectionItem);
 		rulesItem.addActionListener( new ActionListener() {
 	    	public void actionPerformed( ActionEvent event ){
-	    		
+	    		JOptionPane.showMessageDialog( gui,"Battleship\n"+
+		                "Authors: Zaynab Almoujahed & Dana Dolat\n"
+		                , "How to Play the Game", JOptionPane.PLAIN_MESSAGE);
+	        }
+	      }
+	    );
+		aboutGameItem.addActionListener( new ActionListener() {
+	    	public void actionPerformed( ActionEvent event ){
+	    		JOptionPane.showMessageDialog( gui,""
+		                , "About Battleship", JOptionPane.PLAIN_MESSAGE);
 	        }
 	      }
 	    );
@@ -61,7 +71,9 @@ public class Menu extends JMenuBar{
 		
 	    aboutItem.addActionListener( new ActionListener() {
 	    	public void actionPerformed( ActionEvent event ){
-
+	    		JOptionPane.showMessageDialog( gui,"Battleship\n"+
+		                "Authors: Zaynab Almoujahed & Dana Dolat\n"
+		                , "About Us", JOptionPane.PLAIN_MESSAGE);
 	        }
 	      }
 	    );

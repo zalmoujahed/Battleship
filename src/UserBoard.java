@@ -7,7 +7,6 @@ public class UserBoard extends Board {
 	private ArrayList<Ship> Ships;
 	private int shipChosen;
 	private Label curNeighbor; 
-	private int hits, misses;
 	
 	
 	
@@ -15,8 +14,7 @@ public class UserBoard extends Board {
 		super(g);
 		Ships = ships;
 		shipChosen = -1;
-		hits = 0;
-		misses = 0;
+	
 	}
 	
 	@Override
@@ -245,10 +243,5 @@ public class UserBoard extends Board {
 		else 
 			return false;
 	}
-	public int getHits(){
-		return hits;
-	}
-	public int getMisses(){
-		return misses;
-	}
+	
 }

@@ -10,6 +10,8 @@ public class Board implements MouseListener{
 	protected ArrayList<ArrayList<Label>> board;
 	protected Label currentLabel = new Label(" ", -1, -1);
 	protected GUI gui;
+
+	protected int hits, misses;
 	
 	
 	public Board(GUI g){
@@ -17,6 +19,8 @@ public class Board implements MouseListener{
 		board = new ArrayList<ArrayList<Label>>();
 		CreateBoard();
 		gui = g;
+		hits = 0;
+		misses = 0;
 	}
 
 	private void CreateBoard(){
@@ -85,6 +89,12 @@ public class Board implements MouseListener{
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	public int getHits(){
+		return hits;
+	}
+	public int getMisses(){
+		return misses;
 	}
 	
 

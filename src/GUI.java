@@ -20,6 +20,8 @@ public class GUI extends JFrame {
 	private UserBoard userB;
 	private OpponentBoard opponentB;
 	private JLabel statusBar;
+	private JLabel comments;
+	private JPanel topPanel;
 	private static boolean yourTurn = false;
 	private static boolean gameBegun = false;
 	
@@ -49,7 +51,7 @@ public class GUI extends JFrame {
 		menuBar.add(CreateConnectionMenu());
 		menuBar.add(createMoveMenu());
 		menuBar.add(createStartButton());
-		setSize( 400, 900 );
+		setSize( 600, 900 );
 
 		setVisible( true );
 	}
@@ -100,11 +102,9 @@ public JMenu CreateConnectionMenu() {
 		
 		hostItem.addActionListener( new ActionListener() {
 	    	public void actionPerformed( ActionEvent event ){
-	    		//TODO:call server here 
 	    		try {
 	    				Server server = new Server(getGui());
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 	        }
@@ -135,17 +135,18 @@ public JMenu CreateConnectionMenu() {
 			public void actionPerformed(ActionEvent e) {
 				start.setEnabled(false);
 				gameBegun = !gameBegun;
+				statusBar.setText("Hits: "+ opponentB.getHits() + "    Misses: "+ opponentB.getMisses());
+				
 			}
 			
 		});
-		//start.setEnabled(true);
 		return start;
 	}
 	//_______________________________________________________//	
 	public void startGame(){
 		start.setEnabled(true);
 		addShipMenu.setEnabled(true);
-	}
+		}
 	//_______________________________________________________//	
 	public void setGridLayout(){
 		
@@ -190,11 +191,20 @@ public JMenu CreateConnectionMenu() {
 		boards.add(gameBoard1);
 		boards.add(gameBoard2);
 		
-		statusBar = new JLabel("Mode:");
+		statusBar = new JLabel();
 		statusBar.setVisible(true);
+		
+		topPanel = new JPanel();
+		topPanel.setPreferredSize(new Dimension(200, 60));
+		topPanel.setLayout(new GridLayout(3,1));
+		comments = new JLabel();
+		comments.setText("Establish a connection to begin.");
+		
+		topPanel.add(comments);
 		
 		container.add(boards);
 		container.add(statusBar, BorderLayout.SOUTH);
+		container.add(topPanel, BorderLayout.NORTH);
 		setVisible(true);
 		
 		

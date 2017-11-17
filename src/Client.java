@@ -33,10 +33,9 @@ public class Client implements Runnable{
 
 	public void client() throws IOException {
 		try {
-			// echoSocket = new Socket("taranis", 7);
 			
+			//echoSocket = new Socket("10.16.212.32", 34343);
 			echoSocket = new Socket("10.5.220.77", 34343);
-
 			send = new PrintWriter(echoSocket.getOutputStream(), true);
 			recieve = new BufferedReader(new InputStreamReader(
 					echoSocket.getInputStream()));
@@ -49,9 +48,10 @@ public class Client implements Runnable{
 			System.exit(1);
 		}
 		
-		JOptionPane.showMessageDialog( null,
+		JOptionPane.showMessageDialog( gui,
                 "You are now connected to the host" );
 
+		gui.startGame();
 		BufferedReader stdIn = new BufferedReader(
 				new InputStreamReader(System.in));
 		String userInput;
