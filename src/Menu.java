@@ -7,14 +7,12 @@ import javax.swing.*;
 public class Menu extends JMenuBar{
 	//private int toggleCheckOnFillFlag;
 	private static GUI gui;
-	private static JMenuBar bar;
 	private static JMenu fileMenu, helpMenu; ; // the menus that will be attached to the JManuBar
 	private static JMenuItem exitItem; //  items for the "File" menu
 	private static JMenuItem rulesItem, connectionItem, aboutItem, aboutGameItem; //  items for the "Help" menu
 	
 	
 	public Menu(GUI g){
-		bar = new JMenuBar();
 		gui = g;
 	}
 

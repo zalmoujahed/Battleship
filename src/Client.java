@@ -23,7 +23,6 @@ public class Client implements Runnable{
 				try {
 					client();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -33,10 +32,9 @@ public class Client implements Runnable{
 
 	public void client() throws IOException {
 		try {
-			
 
-			echoSocket = new Socket("10.16.212.32", 34343);
-			//echoSocket = new Socket("10.5.220.77", 34343);
+			//echoSocket = new Socket("10.16.212.32", 34343);
+			echoSocket = new Socket("10.107.208.83", 34343);
 			
 			send = new PrintWriter(echoSocket.getOutputStream(), true);
 			recieve = new BufferedReader(new InputStreamReader(
@@ -50,8 +48,7 @@ public class Client implements Runnable{
 			System.exit(1);
 		}
 		
-		JOptionPane.showMessageDialog( gui,
-                "You are now connected to the host" );
+		gui.printToConnectionStat("You are now connected to the host");
 
 		gui.startGame();
 		BufferedReader stdIn = new BufferedReader(
@@ -60,8 +57,8 @@ public class Client implements Runnable{
 
 		while ((userInput = stdIn.readLine()) != null) {
 			send.println(userInput);
-			System.out.println("Client: " + userInput);
-			System.out.println("Server: " + recieve.readLine());
+			System.out.println("Client(in client): " + userInput);
+			System.out.println("Server(in client): " + recieve.readLine());
 		}
 
 		send.close();
@@ -72,6 +69,6 @@ public class Client implements Runnable{
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		
 	}
 }
