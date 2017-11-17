@@ -87,7 +87,7 @@ public class Server implements Runnable{
 			if (inputLine.equals("Bye.")) 
 				break; 
 		} 
-
+		
 		send.close(); 
 		recieve.close(); 
 		communicationSocket.close(); 
