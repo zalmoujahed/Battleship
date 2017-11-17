@@ -5,7 +5,7 @@ import javax.swing.JMenuItem;
 public class Ship {
 	
 	private int index;
-	private int length;
+	private int length, hits;
 	private String name;
 	private ArrayList<String> iconNamesHorizontal;
 	private ArrayList<String> iconNamesVertical;
@@ -27,6 +27,8 @@ public class Ship {
 		inWater = false;
 		Chosen = false;
 		shipItem = new JMenuItem(name);
+		hits = 0;
+		
 		
 		if(length == 4){
 			destroyedH.add(destroyedH.get(1));
@@ -73,6 +75,12 @@ public class Ship {
 	}
 	public ArrayList<String> getShipVertical(){
 		return iconNamesVertical;
+	}
+	public void incrementHit(){
+		hits++;
+	}
+	public int getHits(){
+		return hits;
 	}
 	
 	

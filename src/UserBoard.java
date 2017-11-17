@@ -16,7 +16,7 @@ public class UserBoard extends Board {
 		shipChosen = -1;
 	
 	}
-	
+	//___________________________________________________________________________//
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
@@ -40,6 +40,7 @@ public class UserBoard extends Board {
 		}
 		
 	}
+	//___________________________________________________________________________//
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		shipChosen = chosenShipIndex();
@@ -99,7 +100,7 @@ public class UserBoard extends Board {
 	        }
 		}
 	}
-	
+	//___________________________________________________________________________//
 	public int chosenShipIndex(){
 		int i = -1;
 		for(Ship s: Ships){
@@ -109,6 +110,7 @@ public class UserBoard extends Board {
 		}
 		return i;
 	}	
+	//___________________________________________________________________________//
 	public void fillInShip(){
 		if(currentLabel.getRow() != curNeighbor.getRow()){			//North or south
 
@@ -163,6 +165,7 @@ public class UserBoard extends Board {
 		resetBoard();
 		
 	}
+	//___________________________________________________________________________//
 	public void checkNeighbors(Label l){
 		
 		if(l.getNorth() != -1){
@@ -207,6 +210,7 @@ public class UserBoard extends Board {
 		}
 		
 	}
+	//___________________________________________________________________________//
 	// Reset the borders and variables after a ship is added
 	public void resetBoard(){
 		   	
@@ -229,16 +233,17 @@ public class UserBoard extends Board {
     	shipChosen  = -1;
     	curNeighbor = null;
 	}
-	
+	//___________________________________________________________________________//
 	public void updateBoard(int row, int col){
 		if(checkHit(row, col)){
 			this.hits++;
+			
 		}
 		else{
 			this.misses++;
 		}
 	}
-	
+	//___________________________________________________________________________//
 	public boolean checkHit(int row, int col){
 		if(board.get(row).get(col).hasShip()){
 			return true;
@@ -246,5 +251,22 @@ public class UserBoard extends Board {
 		else 
 			return false;
 	}
+	//___________________________________________________________________________//
+	public void changeImageHit(){
+		
+	}
+	//___________________________________________________________________________//
+	public void changeImageMiss(){
+		
+	}
+	//___________________________________________________________________________//
+	public void changeShipImage(){
+		
+	}
+	//___________________________________________________________________________//
+	public void changeShipSink(){
+		
+	}
+	//___________________________________________________________________________//
 	
 }
