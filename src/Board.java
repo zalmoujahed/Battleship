@@ -60,8 +60,7 @@ public class Board implements MouseListener{
         	currentLabel.changeColor(Color.BLACK);
         }
         l.changeColor(Color.RED);
-        gui.printToPanel(l.getRow() + " " + l.getCol());
-        System.out.println(l.getRow() + " " + l.getCol());
+        
         currentLabel = l;
         gui.repaint();
 		

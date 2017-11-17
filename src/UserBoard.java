@@ -157,8 +157,11 @@ public class UserBoard extends Board {
 			}
 			
 		}
+		Ships.get(shipChosen).setInWater(true);
+		
 		//reset borders that were highlighted
 		resetBoard();
+		
 	}
 	public void checkNeighbors(Label l){
 		
@@ -229,10 +232,10 @@ public class UserBoard extends Board {
 	
 	public void updateBoard(int row, int col){
 		if(checkHit(row, col)){
-			hits++;
+			this.hits++;
 		}
 		else{
-			misses++;
+			this.misses++;
 		}
 	}
 	

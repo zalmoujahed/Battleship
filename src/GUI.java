@@ -20,7 +20,7 @@ public class GUI extends JFrame {
 	private UserBoard userB;
 	private OpponentBoard opponentB;
 	private JLabel statusBar;
-	private JLabel comments;
+	private JLabel comments, connectionStatus, turn;
 	private JPanel topPanel;
 	private static boolean yourTurn = false;
 	private static boolean gameBegun = false;
@@ -51,7 +51,7 @@ public class GUI extends JFrame {
 		menuBar.add(CreateConnectionMenu());
 		menuBar.add(createMoveMenu());
 		menuBar.add(createStartButton());
-		setSize( 600, 900 );
+		setSize( 480, 900 );
 
 		setVisible( true );
 	}
@@ -133,10 +133,16 @@ public JMenu CreateConnectionMenu() {
 		start.addActionListener(new ActionListener(){
 			
 			public void actionPerformed(ActionEvent e) {
-				start.setEnabled(false);
-				gameBegun = !gameBegun;
-				statusBar.setText("Hits: "+ opponentB.getHits() + "    Misses: "+ opponentB.getMisses());
-				
+				if(allShipsAdded()){
+					start.setEnabled(false);
+					gameBegun = !gameBegun;
+					statusBar.setText("Hits: "+ opponentB.getHits() + "    Misses: "+ opponentB.getMisses());
+					printToComments("You have started a new game.");
+					printToTurn("It's your turn");
+				}
+				else{
+					printToComments("You must add all ships before starting a new game");
+				}
 			}
 			
 		});
@@ -194,13 +200,24 @@ public JMenu CreateConnectionMenu() {
 		statusBar = new JLabel();
 		statusBar.setVisible(true);
 		
+		// Set up top panel
 		topPanel = new JPanel();
 		topPanel.setPreferredSize(new Dimension(200, 60));
 		topPanel.setLayout(new GridLayout(3,1));
-		comments = new JLabel();
-		comments.setText("Establish a connection to begin.");
 		
+		connectionStatus = new JLabel();
+		connectionStatus.setText("Establish a connection to begin.");
+		
+		comments = new JLabel();
+		comments.setText(" ");
+		
+		turn = new JLabel();
+		turn.setText(" ");
+		
+		topPanel.add(connectionStatus);
 		topPanel.add(comments);
+		topPanel.add(turn);
+		topPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		
 		container.add(boards);
 		container.add(statusBar, BorderLayout.SOUTH);
@@ -261,8 +278,38 @@ public JMenu CreateConnectionMenu() {
 		
 	}	
 	//_______________________________________________________//
-	public void printToPanel(String s){
+	public boolean allShipsAdded(){
+		
+		for(Ship s : Ships){
+			if (!s.isInWater()){
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	//_______________________________________________________//
+	
+	//_______________________________________________________//
+	//_______________________________________________________//
+	//_______________________________________________________//
+	public void printToStatusBar(String s){
 		statusBar.setText(s);
+		this.repaint();
+	}
+	//_______________________________________________________//
+	public void printToConnectionStat(String s){
+		connectionStatus.setText(s);
+		this.repaint();
+	}
+	//_______________________________________________________//
+	public void printToComments(String s){
+		comments.setText(s);
+		this.repaint();
+	}
+	//_______________________________________________________//
+	public void printToTurn(String s){
+		turn.setText(s);
 		this.repaint();
 	}
 	//_______________________________________________________//

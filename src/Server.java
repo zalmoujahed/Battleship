@@ -20,7 +20,6 @@ public class Server implements Runnable{
 				try {
 					serve();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -31,9 +30,7 @@ public class Server implements Runnable{
 	public void serve() throws IOException {
 
 		try { 
-			JOptionPane.showMessageDialog( gui,
-	                "You are now hosting" );
-			
+						
 			connectionSocket = new ServerSocket(34343); 
 			
 			System.out.println ("Socket open on Port: " +
@@ -49,7 +46,7 @@ public class Server implements Runnable{
 			System.exit(1); 
 		} 
 
-		
+		gui.printToConnectionStat("You are now hosting");
 
 		try { 
 			communicationSocket = connectionSocket.accept(); 
@@ -70,6 +67,8 @@ public class Server implements Runnable{
 		//TODO: receive hits to the user board 
 		//receive two ints specifying coord of hit 
 		//check if user ships have been hit
+		
+		//need 2 different sockets
 	
 		gui.startGame();
 		send = new PrintWriter(communicationSocket.getOutputStream(), true);
@@ -81,9 +80,9 @@ public class Server implements Runnable{
 
 		while ((inputLine = recieve.readLine()) != null) 
 		{
-			System.out.println ("Server: " + inputLine); 
+			System.out.println ("Client(in server): " + inputLine); 
 			send.println(inputLine); 
-			System.out.println("Client: " + recieve.readLine());
+			System.out.println("Client: (in server)" + recieve.readLine());
 
 			if (inputLine.equals("Bye.")) 
 				break; 
@@ -97,7 +96,7 @@ public class Server implements Runnable{
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

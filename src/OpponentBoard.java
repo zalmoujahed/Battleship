@@ -18,7 +18,7 @@ public class OpponentBoard extends Board{
         	currentLabel.changeColor(Color.BLACK);
         }
         l.changeColor(Color.RED);
-        gui.printToPanel("opponent");
+        
         System.out.println(l.getRow() + " " + l.getCol());
         currentLabel = l;
         gui.repaint();
