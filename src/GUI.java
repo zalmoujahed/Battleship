@@ -23,8 +23,9 @@ public class GUI extends JFrame {
 	private JLabel comments, connectionStatus, turn;
 	private JPanel topPanel;
 	private static boolean yourTurn = false;
-	private static boolean gameBegun, opGameBegun = false;
+	private static boolean gameBegun, opGameBegun, win = false;
 	private boolean isHost;
+	
 	
 	int curShipIndex = -1;
 	
@@ -140,6 +141,7 @@ public JMenu CreateConnectionMenu() {
 				if(allShipsAdded()){
 					start.setEnabled(false);
 					gameBegun = true;
+					yourTurn = true;
 					statusBar.setText("Hits: "+ opponentB.getHits() + "    Misses: "+ opponentB.getMisses());
 					send("s");
 					if(!opGameBegun){
@@ -173,7 +175,7 @@ public JMenu CreateConnectionMenu() {
 		boards.setLayout(new GridLayout(2, 1));
 		
 		//Set up opponent board	
-		opponentB = new OpponentBoard(this, gameBegun, yourTurn);
+		opponentB = new OpponentBoard(this);
 		opPanel = new Container();
 		opPanel.setLayout(new GridLayout(11, 11, 0, 0));		
 		for(ArrayList<Label> row : opponentB.getBoard()){
@@ -244,16 +246,24 @@ public JMenu CreateConnectionMenu() {
 	public boolean isHost() {
 		return isHost;
 	}
+	public boolean win(){
+		return win;
+	}
 
+	public void setWin(boolean w){
+		win = w;
+	}
 	//_______________________________________________________//
 	public void send(String coord) {
 		if(isHost){
 			server.sendData(coord);
+			turn();
 			//System.out.println("sending"+coord);
 		}
 		
 		else{
 			client.sendData(coord);
+			turn();
 			//System.out.println("sending"+coord);
 		}
 	}
@@ -264,10 +274,16 @@ public JMenu CreateConnectionMenu() {
 		if(coord.length() == 1){
 			opGameBegun = true;
 			if(gameBegun){
-				
+				yourTurn = false;
 			}
 			return;
 		}
+		if(coord.length() == 2){
+			JOptionPane.showMessageDialog( this,"You Won! Congrats!"
+	                , "You Won!", JOptionPane.PLAIN_MESSAGE);
+			return;
+		}
+
 		String[] splitStr = coord.split("\\s+");
 		int x = Integer.parseInt(splitStr[0]);
 		int y = Integer.parseInt(splitStr[1]);	
@@ -390,5 +406,15 @@ public JMenu CreateConnectionMenu() {
 	//_______________________________________________________//
 	public GUI getGui(){
 		return this;
+	}
+	public boolean checkWin(){
+		for (Ship s : Ships){
+			if(!s.shipIsSunk()){
+				return false;
+			}
+			
+		}
+		return true;
+		
 	}
 }

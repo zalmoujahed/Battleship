@@ -1,15 +1,13 @@
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JOptionPane;
+
 public class OpponentBoard extends Board{
 	
-	private boolean turn, gs;
 	
-	
-	public OpponentBoard(GUI g, boolean gameStarted, boolean t){
+	public OpponentBoard(GUI g){
 		super(g);
-		turn = t;
-		gs = gameStarted;
 	}
 	
 	@Override
@@ -18,7 +16,7 @@ public class OpponentBoard extends Board{
 			Label l = (Label)e.getSource();
 	        
 	        gui.send("" + (l.getRow()+1)+ " "+ (l.getCol()+1));
-	        
+	        checkWin();
 	        gui.repaint();
 		}
 		
@@ -27,7 +25,7 @@ public class OpponentBoard extends Board{
 	public void mouseEntered(MouseEvent e) {
 		
 		Label l = (Label)e.getSource();
-		if(gui.gameHasBegun()){
+		if(gui.gameHasBegun() && gui.getTurn()){
 		
 	        if( l.getText() == ""  && !currentLabel.isChosen() ){
 	        	
@@ -54,6 +52,13 @@ public class OpponentBoard extends Board{
 			board.get(row).get(col).changeImage("battleship/batt102.gif");		
 		}
 		gui.turn();
+	}
+	public void checkWin(){
+		if(gui.win()){
+			JOptionPane.showMessageDialog( gui,"Sorry you lost."
+	                , "You Lost", JOptionPane.PLAIN_MESSAGE);
+			gui.send("wi");
+		}
 	}
 	
 	
