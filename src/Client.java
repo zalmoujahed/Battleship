@@ -31,7 +31,7 @@ public class Client implements Runnable{
 	public void connect() throws IOException {
 		try {
 
-			echoSocket = new Socket("10.16.212.32", 34343);
+			echoSocket = new Socket("10.8.232.36", 34343);
 			//echoSocket = new Socket("10.107.208.83", 34343);
 			
 			send = new PrintWriter(echoSocket.getOutputStream(), true);
