@@ -83,8 +83,8 @@ public class Server implements Runnable{
 
 		String inputLine = recieve.readLine();
 
-		//while ((inputLine = recieve.readLine()) != null) 
-		//{
+//		while ((inputLine = recieve.readLine()) != null) 
+//		{
 			gui.processData(inputLine);
 			
 			//break; 
