@@ -10,8 +10,6 @@ public class Client implements Runnable{
 	PrintWriter send = null;
 	BufferedReader recieve = null;
 
-	PrintWriter out = null;
-	BufferedReader in = null;
 	GUI gui;
 
 	public Client(GUI g) throws IOException{
@@ -21,7 +19,7 @@ public class Client implements Runnable{
 		Thread t1 = new Thread(new Runnable() {
 			public void run() {
 				try {
-					client();
+					connect();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -30,11 +28,11 @@ public class Client implements Runnable{
 		t1.start();
 	}
 
-	public void client() throws IOException {
+	public void connect() throws IOException {
 		try {
 
-			//echoSocket = new Socket("10.16.212.32", 34343);
-			echoSocket = new Socket("10.107.208.83", 34343);
+			echoSocket = new Socket("10.16.212.32", 34343);
+			//echoSocket = new Socket("10.107.208.83", 34343);
 			
 			send = new PrintWriter(echoSocket.getOutputStream(), true);
 			recieve = new BufferedReader(new InputStreamReader(
@@ -49,21 +47,37 @@ public class Client implements Runnable{
 		}
 		
 		gui.printToConnectionStat("You are now connected to the host");
-
+		
 		gui.startGame();
-		BufferedReader stdIn = new BufferedReader(
-				new InputStreamReader(System.in));
-		String userInput;
+		
+	}
+	
+	public void sendData(int x, int y) {
 
-		while ((userInput = stdIn.readLine()) != null) {
-			send.println(userInput);
-			System.out.println("Client(in client): " + userInput);
-			System.out.println("Server(in client): " + recieve.readLine());
-		}
+		String userInput = x + " " + y;
+		
+		send.println(userInput);
+		System.out.println("Client(in client): " + userInput);
 
+	}
+	
+	public void recieveData() throws IOException{
+		String inputLine; 
+
+		while ((inputLine = recieve.readLine()) != null) 
+		{
+			System.out.println ("Client(in server): " + inputLine); 
+			send.println(inputLine); 
+			System.out.println("Client: (in server)" + recieve.readLine());
+
+			if (inputLine.equals("Bye.")) 
+				break; 
+		} 
+	}
+	
+	public void closeServer() throws IOException{
 		send.close();
 		recieve.close();
-		stdIn.close();
 		echoSocket.close();
 	}
 

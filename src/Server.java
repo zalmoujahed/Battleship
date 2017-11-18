@@ -18,7 +18,7 @@ public class Server implements Runnable{
 		Thread t1 = new Thread(new Runnable() {
 			public void run() {
 				try {
-					serve();
+					host();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -27,7 +27,7 @@ public class Server implements Runnable{
 		t1.start();
 	}
 
-	public void serve() throws IOException {
+	public void host() throws IOException {
 
 		try { 
 						
@@ -39,6 +39,11 @@ public class Server implements Runnable{
 			System.out.println("Java InetAddress localHost info: " + addr);
 			System.out.println("Local Host Name: " + addr.getHostName());
 			System.out.println("Local Host Address: " + addr.getHostAddress());
+			
+			send = new PrintWriter(communicationSocket.getOutputStream(), true);
+			recieve = new BufferedReader(new InputStreamReader(
+					communicationSocket.getInputStream()));
+			
 		} 
 		catch (IOException e) 
 		{ 
@@ -71,10 +76,19 @@ public class Server implements Runnable{
 		//need 2 different sockets
 	
 		gui.startGame();
-		send = new PrintWriter(communicationSocket.getOutputStream(), true);
-		recieve = new BufferedReader(new InputStreamReader(
-				communicationSocket.getInputStream()));
 		
+	}
+	
+	public void sendData(int x, int y) {
+
+		String userInput = x + " " + y;
+		
+		send.println(userInput);
+		System.out.println("Server(in server): " + userInput);
+
+	}
+	
+	public void recieveData() throws IOException{
 
 		String inputLine; 
 
@@ -87,7 +101,9 @@ public class Server implements Runnable{
 			if (inputLine.equals("Bye.")) 
 				break; 
 		} 
-		
+	}
+	
+	public void closeServer() throws IOException{
 		send.close(); 
 		recieve.close(); 
 		communicationSocket.close(); 
