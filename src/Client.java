@@ -66,14 +66,32 @@ public class Client implements Runnable{
 	}
 	
 	public void recieveData() throws IOException{
+<<<<<<< HEAD
 		
+<<<<<<< HEAD
 		String inputLine; 
+=======
+		String inputLine = recieve.readLine(); 
+=======
+		String inputLine; 
+>>>>>>> parent of b6d3ad4... IT WORKS JESUS CHRIST GOOD LORD PRAISE THE LORD
+>>>>>>> cceadb0ea0d6963d2ac85bbbb1d72fb0abd4ecea
 
 		while ((inputLine = recieve.readLine()) != null) 
 		{
 			gui.processData(inputLine);
+<<<<<<< HEAD
 			break; 
 		}
+=======
+<<<<<<< HEAD
+			//break; 
+		//}
+=======
+			break; 
+		} 
+>>>>>>> parent of b6d3ad4... IT WORKS JESUS CHRIST GOOD LORD PRAISE THE LORD
+>>>>>>> cceadb0ea0d6963d2ac85bbbb1d72fb0abd4ecea
 	}
 	
 	public void closeServer() throws IOException{
