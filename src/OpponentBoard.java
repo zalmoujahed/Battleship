@@ -3,20 +3,24 @@ import java.awt.event.MouseEvent;
 
 public class OpponentBoard extends Board{
 	
-	private boolean turn;
+	private boolean turn, gs;
+	
 	
 	public OpponentBoard(GUI g, boolean gameStarted, boolean t){
 		super(g);
 		turn = t;
+		gs = gameStarted;
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		Label l = (Label)e.getSource();
-        
-        gui.send("" + (l.getRow()+1)+ " "+ (l.getCol()+1));
-        
-        gui.repaint();
+		if(gui.gameHasBegun() && gui.opgame()){
+			Label l = (Label)e.getSource();
+	        
+	        gui.send("" + (l.getRow()+1)+ " "+ (l.getCol()+1));
+	        
+	        gui.repaint();
+		}
 		
 	}
 	@Override
@@ -49,6 +53,8 @@ public class OpponentBoard extends Board{
 			this.misses++;
 			board.get(row).get(col).changeImage("battleship/batt102.gif");		
 		}
+		gui.turn();
 	}
+	
 	
 }

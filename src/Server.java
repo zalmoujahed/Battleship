@@ -70,36 +70,21 @@ public class Server implements Runnable{
 	public void sendData(String userInput) {
 
 		send.println(userInput);
-		try {
-			recieveData();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 
 	}
 	
 	public void recieveData() throws IOException{
 
-<<<<<<< HEAD
-		String inputLine = recieve.readLine();
-=======
 		String inputLine; 
->>>>>>> parent of b6d3ad4... IT WORKS JESUS CHRIST GOOD LORD PRAISE THE LORD
 
-		//while ((inputLine = recieve.readLine()) != null) 
-		//{
+		while ((inputLine = recieve.readLine()) != null) 
+		{
 			gui.processData(inputLine);
-<<<<<<< HEAD
-			
-			//break; 
-		//} 
-=======
-			break; 
+
 		} 
->>>>>>> parent of b6d3ad4... IT WORKS JESUS CHRIST GOOD LORD PRAISE THE LORD
-	}
-	
+
+	} 
 	public void closeServer() throws IOException{
 		send.close(); 
 		recieve.close(); 

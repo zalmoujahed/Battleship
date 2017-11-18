@@ -141,8 +141,10 @@ public JMenu CreateConnectionMenu() {
 					start.setEnabled(false);
 					gameBegun = true;
 					statusBar.setText("Hits: "+ opponentB.getHits() + "    Misses: "+ opponentB.getMisses());
-					
-					if(opGameBegun)
+					send("s");
+					if(!opGameBegun){
+						printToComments("Waiting on opponent.");
+					}
 					printToComments("You have started a new game.");
 					printToTurn("It's your turn");
 				}
@@ -158,7 +160,6 @@ public JMenu CreateConnectionMenu() {
 	public void startGame(){
 		start.setEnabled(true);
 		addShipMenu.setEnabled(true);
-		send("s");
 		}
 	//_______________________________________________________//	
 	public void setGridLayout(){
@@ -262,6 +263,9 @@ public JMenu CreateConnectionMenu() {
 		
 		if(coord.length() == 1){
 			opGameBegun = true;
+			if(gameBegun){
+				
+			}
 			return;
 		}
 		String[] splitStr = coord.split("\\s+");
@@ -341,8 +345,20 @@ public JMenu CreateConnectionMenu() {
 		return true;
 	}
 	//_______________________________________________________//
-	
+	public void turn(){
+		yourTurn = !yourTurn;
+		if (yourTurn)
+			printToTurn("It's your turn");
+		else
+			printToTurn("It's your opponent's turn");
+	}
+	public boolean getTurn(){
+		return yourTurn;
+	}
 	//_______________________________________________________//
+	public boolean opgame(){
+		return opGameBegun;
+	}
 	//_______________________________________________________//
 	public void printToStatusBar(int h, int m){
 		statusBar.setText("Hits: "+ h + "    Misses: "+ m);

@@ -29,7 +29,7 @@ public class Client implements Runnable{
 	public void connect() throws IOException {
 		try {
 
-			echoSocket = new Socket("10.8.228.85", 34343);
+			echoSocket = new Socket("127.0.0.1", 34343);
 
 			//echoSocket = new Socket("10.8.232.36", 34343);
 
@@ -57,50 +57,16 @@ public class Client implements Runnable{
 	
 	public void sendData(String userInput) {
 		send.println(userInput);
-		try {
-			recieveData();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	public void recieveData() throws IOException{
-<<<<<<< HEAD
 		
-<<<<<<< HEAD
-<<<<<<< HEAD
 		String inputLine; 
-=======
-		String inputLine = recieve.readLine(); 
-=======
-		String inputLine; 
->>>>>>> parent of b6d3ad4... IT WORKS JESUS CHRIST GOOD LORD PRAISE THE LORD
->>>>>>> cceadb0ea0d6963d2ac85bbbb1d72fb0abd4ecea
-=======
-		String inputLine = recieve.readLine(); 
->>>>>>> parent of 5d43d49... newest
 
-		//while ((inputLine = recieve.readLine()) != null) 
-		//{
+		while ((inputLine = recieve.readLine()) != null) 
+		{
 			gui.processData(inputLine);
-<<<<<<< HEAD
-<<<<<<< HEAD
-			break; 
 		}
-=======
-<<<<<<< HEAD
-			//break; 
-		//}
-=======
-			break; 
-		} 
->>>>>>> parent of b6d3ad4... IT WORKS JESUS CHRIST GOOD LORD PRAISE THE LORD
->>>>>>> cceadb0ea0d6963d2ac85bbbb1d72fb0abd4ecea
-=======
-			//break; 
-		//}
->>>>>>> parent of 5d43d49... newest
 	}
 	
 	public void closeServer() throws IOException{
