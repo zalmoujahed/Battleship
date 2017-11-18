@@ -62,13 +62,14 @@ public class Client implements Runnable{
 	}
 	
 	public void recieveData() throws IOException{
+		
 		String inputLine; 
 
 		while ((inputLine = recieve.readLine()) != null) 
 		{
 			gui.processData(inputLine);
-			break; 
-		} 
+			//break; 
+		}
 	}
 	
 	public void closeServer() throws IOException{
