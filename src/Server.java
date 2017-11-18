@@ -62,8 +62,6 @@ public class Server implements Runnable{
 			System.exit(1); 
 		} 
 		
-		
-		
 		gui.startGame();
 		gui.setIsHost(true);
 		recieveData();

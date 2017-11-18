@@ -23,7 +23,7 @@ public class GUI extends JFrame {
 	private JLabel comments, connectionStatus, turn;
 	private JPanel topPanel;
 	private static boolean yourTurn = false;
-	private static boolean gameBegun = false;
+	private static boolean gameBegun, opGameBegun = false;
 	private boolean isHost;
 	
 	int curShipIndex = -1;
@@ -139,8 +139,10 @@ public JMenu CreateConnectionMenu() {
 			public void actionPerformed(ActionEvent e) {
 				if(allShipsAdded()){
 					start.setEnabled(false);
-					gameBegun = !gameBegun;
+					gameBegun = true;
 					statusBar.setText("Hits: "+ opponentB.getHits() + "    Misses: "+ opponentB.getMisses());
+					
+					if(opGameBegun)
 					printToComments("You have started a new game.");
 					printToTurn("It's your turn");
 				}
@@ -156,6 +158,7 @@ public JMenu CreateConnectionMenu() {
 	public void startGame(){
 		start.setEnabled(true);
 		addShipMenu.setEnabled(true);
+		send("s");
 		}
 	//_______________________________________________________//	
 	public void setGridLayout(){
@@ -229,36 +232,48 @@ public JMenu CreateConnectionMenu() {
 		
 		
 	}
-	
+
+	//_______________________________________________________//
 	public void setIsHost(boolean host) {
 		isHost = host;
+			
 	}
-	
+
+	//_______________________________________________________//
 	public boolean isHost() {
 		return isHost;
 	}
-	
+
+	//_______________________________________________________//
 	public void send(String coord) {
 		if(isHost){
 			server.sendData(coord);
-			System.out.println("sending"+coord);
+			//System.out.println("sending"+coord);
 		}
 		
 		else{
 			client.sendData(coord);
-			System.out.println("sending"+coord);
+			//System.out.println("sending"+coord);
 		}
 	}
-	
+
+	//_______________________________________________________//
 	public void processData(String coord) {
+		
+		if(coord.length() == 1){
+			opGameBegun = true;
+			return;
+		}
 		String[] splitStr = coord.split("\\s+");
 		int x = Integer.parseInt(splitStr[0]);
 		int y = Integer.parseInt(splitStr[1]);	
 		System.out.println("received" +coord);
+		
 		if(coord.length() != 3){	
 			int hm = Integer.parseInt(splitStr[2]);
 			
 			opponentB.updateBoard(x,y,hm);
+			return;
 			
 		}
 		
@@ -329,9 +344,8 @@ public JMenu CreateConnectionMenu() {
 	
 	//_______________________________________________________//
 	//_______________________________________________________//
-	//_______________________________________________________//
-	public void printToStatusBar(String s){
-		statusBar.setText(s);
+	public void printToStatusBar(int h, int m){
+		statusBar.setText("Hits: "+ h + "    Misses: "+ m);
 		this.repaint();
 	}
 	//_______________________________________________________//
