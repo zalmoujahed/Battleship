@@ -78,12 +78,13 @@ public class Server implements Runnable{
 	
 	public void recieveData() throws IOException{
 
-		String inputLine; 
+		String inputLine;
 
 		while ((inputLine = recieve.readLine()) != null) 
 		{
 			gui.processData(inputLine);
-			break; 
+			
+			//break; 
 		} 
 	}
 	
