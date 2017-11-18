@@ -79,10 +79,8 @@ public class Server implements Runnable{
 		
 	}
 	
-	public void sendData(int x, int y) {
+	public void sendData(String userInput) {
 
-		String userInput = x + " " + y;
-		
 		send.println(userInput);
 		System.out.println("Server(in server): " + userInput);
 
@@ -94,6 +92,7 @@ public class Server implements Runnable{
 
 		while ((inputLine = recieve.readLine()) != null) 
 		{
+			gui.processData(inputLine);
 			System.out.println ("Client(in server): " + inputLine); 
 			send.println(inputLine); 
 			System.out.println("Client: (in server)" + recieve.readLine());

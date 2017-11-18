@@ -52,10 +52,8 @@ public class Client implements Runnable{
 		
 	}
 	
-	public void sendData(int x, int y) {
+	public void sendData(String userInput) {
 
-		String userInput = x + " " + y;
-		
 		send.println(userInput);
 		System.out.println("Client(in client): " + userInput);
 
@@ -66,6 +64,7 @@ public class Client implements Runnable{
 
 		while ((inputLine = recieve.readLine()) != null) 
 		{
+			gui.processData(inputLine);
 			System.out.println ("Client(in server): " + inputLine); 
 			send.println(inputLine); 
 			System.out.println("Client: (in server)" + recieve.readLine());
