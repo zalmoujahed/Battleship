@@ -47,4 +47,8 @@ public class OpponentBoard extends Board{
 		}
 	}
 	
+	public void updateBoard(int row, int col, int hit) {
+		
+	}
+	
 }

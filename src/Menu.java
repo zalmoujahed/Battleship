@@ -46,7 +46,7 @@ public class Menu extends JMenuBar{
 		helpMenu.add(connectionItem);
 		rulesItem.addActionListener(new ActionListener() {
 	    	public void actionPerformed( ActionEvent event ){
-	    		JOptionPane.showMessageDialog( gui,"The object of Battleship is to try and sink all of the other player's before they sink all of your ships.\nAll of the other player's ships are somewhere on his/her board.\nYou try and hit them by calling out the coordinates of one of the squares on the board.\nThe other player also tries to hit your ships by calling out coordinates.\nNeither you nor the other player can see the other's board so you must try to guess where they are.\nEach board in the physical game has two grids:  the lower (horizontal) section for the player's ships and the upper part (vertical during play) for recording the player's guesses."
+	    		JOptionPane.showMessageDialog( gui,"The object of Battleship is to try and sink all of the other player's ships before they sink all of yours.\nAll of the other player's ships are somewhere on his/her board.\nYou try and hit them by clicking one of the squares on the board.\nYou and the other player will take turns trying to hit eachother's ships.\nNeither you nor the other player can see the other's board so you must try to guess where they are."
 		                , "How to Play the Game", JOptionPane.PLAIN_MESSAGE);
 	        }
 	      }
@@ -61,6 +61,8 @@ public class Menu extends JMenuBar{
 		
 		connectionItem.addActionListener( new ActionListener() {
 	    	public void actionPerformed( ActionEvent event ){
+	    		JOptionPane.showMessageDialog( gui,"Decide who will host the game and who will connect to the game. \nHave the host choose the option Host Game from the Connect tab\n and have the person connecting choose Connect Game "
+		                , "How to Play the Game", JOptionPane.PLAIN_MESSAGE);
 
 	        }
 	      }

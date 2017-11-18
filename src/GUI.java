@@ -248,11 +248,17 @@ public JMenu CreateConnectionMenu() {
 	
 	public void processData(String coord) {
 		String[] splitStr = coord.split("\\s+");
-		if(coord.length() > 3){
-			int hm = Integer.parseInt(splitStr[2]);
-		}
 		int x = Integer.parseInt(splitStr[0]);
-		int y = Integer.parseInt(splitStr[1]);		
+		int y = Integer.parseInt(splitStr[1]);	
+		
+		if(coord.length() > 3){	
+			int hm = Integer.parseInt(splitStr[2]);
+			
+			opponentB.updateBoard(x,y,hm);
+			
+		}
+		
+		userB.updateBoard(x, y);
 	}
 	
 	//_______________________________________________________//
