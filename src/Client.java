@@ -31,7 +31,7 @@ public class Client implements Runnable{
 	public void connect() throws IOException {
 		try {
 
-			echoSocket = new Socket("10.16.212.32", 34343);
+			echoSocket = new Socket("10.8.228.85", 34343);
 			//echoSocket = new Socket("10.107.208.83", 34343);
 			
 			send = new PrintWriter(echoSocket.getOutputStream(), true);
@@ -49,13 +49,15 @@ public class Client implements Runnable{
 		gui.printToConnectionStat("You are now connected to the host");
 		
 		gui.startGame();
+		gui.setIsHost(false);
+		recieveData();
 		
 	}
 	
 	public void sendData(String userInput) {
 
 		send.println(userInput);
-		System.out.println("Client(in client): " + userInput);
+		//System.out.println("Client(in client): " + userInput);
 
 	}
 	
@@ -65,12 +67,7 @@ public class Client implements Runnable{
 		while ((inputLine = recieve.readLine()) != null) 
 		{
 			gui.processData(inputLine);
-			System.out.println ("Client(in server): " + inputLine); 
-			send.println(inputLine); 
-			System.out.println("Client: (in server)" + recieve.readLine());
-
-			if (inputLine.equals("Bye.")) 
-				break; 
+			break; 
 		} 
 	}
 	

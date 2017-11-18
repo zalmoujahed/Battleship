@@ -240,17 +240,22 @@ public JMenu CreateConnectionMenu() {
 	}
 	
 	public void send(String coord) {
-		if(isHost)
+		if(isHost){
 			server.sendData(coord);
-		else
+			System.out.println("sending"+coord);
+		}
+		
+		else{
 			client.sendData(coord);
+			System.out.println("sending"+coord);
+		}
 	}
 	
 	public void processData(String coord) {
 		String[] splitStr = coord.split("\\s+");
 		int x = Integer.parseInt(splitStr[0]);
 		int y = Integer.parseInt(splitStr[1]);	
-		
+		System.out.println("received" +coord);
 		if(coord.length() > 3){	
 			int hm = Integer.parseInt(splitStr[2]);
 			

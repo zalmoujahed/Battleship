@@ -40,9 +40,6 @@ public class Server implements Runnable{
 			System.out.println("Local Host Name: " + addr.getHostName());
 			System.out.println("Local Host Address: " + addr.getHostAddress());
 			
-			send = new PrintWriter(communicationSocket.getOutputStream(), true);
-			recieve = new BufferedReader(new InputStreamReader(
-					communicationSocket.getInputStream()));
 			
 		} 
 		catch (IOException e) 
@@ -54,7 +51,10 @@ public class Server implements Runnable{
 		gui.printToConnectionStat("You are now hosting");
 
 		try { 
-			communicationSocket = connectionSocket.accept(); 
+			communicationSocket = connectionSocket.accept();
+			send = new PrintWriter(communicationSocket.getOutputStream(), true);
+			recieve = new BufferedReader(new InputStreamReader(
+					communicationSocket.getInputStream()));
 		} 
 		catch (IOException e) 
 		{ 
@@ -62,27 +62,17 @@ public class Server implements Runnable{
 			System.exit(1); 
 		} 
 		
-		//TODO: send hits that are input into opponent board
-		//send two ints specifying coord of hit
-		//parse inside of while loop
-		//update the board inside of while loop method that takes in those params
-		//check if opponent ship has been hit
-		//update opponent board with images where user hits regardless
 		
-		//TODO: receive hits to the user board 
-		//receive two ints specifying coord of hit 
-		//check if user ships have been hit
 		
-		//need 2 different sockets
-	
 		gui.startGame();
+		gui.setIsHost(true);
+		recieveData();
 		
 	}
 	
 	public void sendData(String userInput) {
 
 		send.println(userInput);
-		System.out.println("Server(in server): " + userInput);
 
 	}
 	
@@ -93,12 +83,7 @@ public class Server implements Runnable{
 		while ((inputLine = recieve.readLine()) != null) 
 		{
 			gui.processData(inputLine);
-			System.out.println ("Client(in server): " + inputLine); 
-			send.println(inputLine); 
-			System.out.println("Client: (in server)" + recieve.readLine());
-
-			if (inputLine.equals("Bye.")) 
-				break; 
+			break; 
 		} 
 	}
 	
