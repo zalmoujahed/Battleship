@@ -119,19 +119,19 @@ public class UserBoard extends Board {
 			if(currentLabel.getRow() < curNeighbor.getRow()){ //South
 				int row = currentLabel.getRow()+1;
 				
-				for(String s : Ships.get(shipChosen).getShipVertical()){
+				for(String s : Ships.get(shipChosen).getShipVertical(row, row+Ships.get(shipChosen).getLength()-1, col)){
 					board.get(row).get(col).changeImage(s);
-					board.get(row).get(col).setHasShip(true);
+					board.get(row).get(col).setHasShip(true, shipChosen);
 					row++;
 				}
 				
 			}
 			else{
 				int row = curNeighbor.getRow() +1 ;
-				for(String s : Ships.get(shipChosen).getShipVertical()){
+				for(String s : Ships.get(shipChosen).getShipVertical(row +Ships.get(shipChosen).getLength()-1, row, col)){
 					
 					board.get(row).get(col).changeImage(s);
-					board.get(row).get(col).setHasShip(true);
+					board.get(row).get(col).setHasShip(true, shipChosen);
 					row++;
 				}
 			}
@@ -143,17 +143,17 @@ public class UserBoard extends Board {
 			
 			if(currentLabel.getCol() < curNeighbor.getCol()){ //east
 				int col = currentLabel.getCol()+1;
-				for(String s : Ships.get(shipChosen).getShipHorizontal()){
+				for(String s : Ships.get(shipChosen).getShipHorizontal(row, col, col+Ships.get(shipChosen).getLength()-1)){
 					board.get(row).get(col).changeImage(s);
-					board.get(row).get(col).setHasShip(true);
+					board.get(row).get(col).setHasShip(true, shipChosen);
 					col++;
 				}
 			}
 			else{
 				int col = curNeighbor.getCol()+1;
-				for(String s : Ships.get(shipChosen).getShipHorizontal()){
+				for(String s : Ships.get(shipChosen).getShipHorizontal(row, col+Ships.get(shipChosen).getLength()-1, col)){
 					board.get(row).get(col).changeImage(s);
-					board.get(row).get(col).setHasShip(true);
+					board.get(row).get(col).setHasShip(true, shipChosen);
 					col++;
 				}
 			}
@@ -237,10 +237,13 @@ public class UserBoard extends Board {
 	public void updateBoard(int row, int col){
 		if(checkHit(row, col)){
 			this.hits++;
-			
+			int index = board.get(row).get(col).getShipIndex();
+			Ships.get(index).incrementHit();
+			changeImageHit(row, col);
 		}
 		else{
 			this.misses++;
+			changeImageMiss(row, col);
 		}
 	}
 	//___________________________________________________________________________//
@@ -252,19 +255,17 @@ public class UserBoard extends Board {
 			return false;
 	}
 	//___________________________________________________________________________//
-	public void changeImageHit(){
+	//change one label to a red ship piece
+	public void changeImageHit(int row, int col){
 		
 	}
 	//___________________________________________________________________________//
-	public void changeImageMiss(){
+	//Change to dark blue
+	public void changeImageMiss(int row, int col){
 		
 	}
 	//___________________________________________________________________________//
-	public void changeShipImage(){
-		
-	}
-	//___________________________________________________________________________//
-	public void changeShipSink(){
+	public void changeShipSink(int row, int col){
 		
 	}
 	//___________________________________________________________________________//
