@@ -16,7 +16,6 @@ public class OpponentBoard extends Board{
         
         gui.send("" + (l.getRow()+1)+ " "+ (l.getCol()+1));
         
-        currentLabel = l;
         gui.repaint();
 		
 	}

@@ -238,6 +238,8 @@ public class UserBoard extends Board {
 		if(checkHit(row, col)){
 			int index = board.get(row).get(col).getShipIndex();
 			Ships.get(index).incrementHit();
+			if(Ships.get(index).getHits() == Ships.get(index).getLength())
+				Ships.get(index).setShipSunk(true);
 			changeImageHit(row, col, index);
 			gui.send(""+ row + " " + col + " 1");
 		}
