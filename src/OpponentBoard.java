@@ -48,7 +48,14 @@ public class OpponentBoard extends Board{
 	}
 	
 	public void updateBoard(int row, int col, int hit) {
-		
+		if(hit == 1){ 	//Was a hit
+			this.hits++;
+			board.get(row).get(col).changeImage("battleship/batt103");			
+		}
+		else{			//Was a miss
+			this.misses++;
+			board.get(row).get(col).changeImage("battleship/batt102");		
+		}
 	}
 	
 }

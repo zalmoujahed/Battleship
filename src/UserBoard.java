@@ -236,15 +236,16 @@ public class UserBoard extends Board {
 	//___________________________________________________________________________//
 	public void updateBoard(int row, int col){
 		if(checkHit(row, col)){
-			this.hits++;
 			int index = board.get(row).get(col).getShipIndex();
 			Ships.get(index).incrementHit();
 			changeImageHit(row, col, index);
+			gui.send(""+ row + " " + col + " 1");
 		}
 		else{
-			this.misses++;
 			changeImageMiss(row, col);
+			gui.send(""+ row + " " + col + " 0");
 		}
+		
 	}
 	//___________________________________________________________________________//
 	public boolean checkHit(int row, int col){

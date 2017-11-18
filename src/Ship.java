@@ -109,13 +109,6 @@ public class Ship {
 	public int getColEnd(){
 		return colE;
 	}
-	//fix this
-	public String getDestroyedLabel(){
-		
-		return "";
-	}
-	
-
 	
 	
 	
