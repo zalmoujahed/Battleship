@@ -1,8 +1,6 @@
 import java.io.*;
 import java.net.*;
 
-import javax.swing.JOptionPane;
-
 public class Client implements Runnable{
 
 	Socket echoSocket = null;
@@ -59,17 +57,23 @@ public class Client implements Runnable{
 	
 	public void sendData(String userInput) {
 		send.println(userInput);
+		try {
+			recieveData();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void recieveData() throws IOException{
 		
-		String inputLine; 
+		String inputLine = recieve.readLine(); 
 
-		while ((inputLine = recieve.readLine()) != null) 
-		{
+		//while ((inputLine = recieve.readLine()) != null) 
+		//{
 			gui.processData(inputLine);
 			//break; 
-		}
+		//}
 	}
 	
 	public void closeServer() throws IOException{
