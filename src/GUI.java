@@ -310,8 +310,6 @@ public JMenu CreateConnectionMenu() {
 		ArrayList<String> destV = (ArrayList<String>) destroyedV.clone();
 		pNH2.remove(1);
 		pNV2.remove(1);
-		destH.remove(1);
-		destV.remove(1);
 		Ships.add(4, new Ship( 2, "Patrol Boat", 4 , pNH2, pNV2, destH, destV));
 				
 		
