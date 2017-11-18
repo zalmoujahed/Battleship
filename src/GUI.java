@@ -24,6 +24,7 @@ public class GUI extends JFrame {
 	private JPanel topPanel;
 	private static boolean yourTurn = false;
 	private static boolean gameBegun = false;
+	private boolean isHost;
 	
 	int curShipIndex = -1;
 	
@@ -31,6 +32,9 @@ public class GUI extends JFrame {
 	
 	private static JMenu  addShipMenu; 
 	private static JMenuItem hostItem, connectItem;
+	
+	Server server;
+	Client client;
 
 	public GUI(){
 		super("Battleship");
@@ -103,7 +107,7 @@ public JMenu CreateConnectionMenu() {
 		hostItem.addActionListener( new ActionListener() {
 	    	public void actionPerformed( ActionEvent event ){
 	    		try {
-	    				Server server = new Server(getGui());
+	    				server = new Server(getGui());
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -114,7 +118,7 @@ public JMenu CreateConnectionMenu() {
 		connectItem.addActionListener( new ActionListener() {
 	    	public void actionPerformed( ActionEvent event ){
 	    		try {
-					Client client = new Client(getGui());
+					client = new Client(getGui());
 				} catch (IOException e) {
 					
 					e.printStackTrace();
@@ -226,6 +230,31 @@ public JMenu CreateConnectionMenu() {
 		
 		
 	}
+	
+	public void setIsHost(boolean host) {
+		isHost = host;
+	}
+	
+	public boolean isHost() {
+		return isHost;
+	}
+	
+	public void send(String coord) {
+		if(isHost)
+			server.sendData(coord);
+		else
+			client.sendData(coord);
+	}
+	
+	public void processData(String coord) {
+		String[] splitStr = coord.split("\\s+");
+		if(coord.length() > 3){
+			int hm = Integer.parseInt(splitStr[2]);
+		}
+		int x = Integer.parseInt(splitStr[0]);
+		int y = Integer.parseInt(splitStr[1]);		
+	}
+	
 	//_______________________________________________________//
 	public void createShips(){
 		Ships = new ArrayList<Ship>();
