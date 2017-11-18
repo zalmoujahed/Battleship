@@ -256,7 +256,7 @@ public JMenu CreateConnectionMenu() {
 		int x = Integer.parseInt(splitStr[0]);
 		int y = Integer.parseInt(splitStr[1]);	
 		System.out.println("received" +coord);
-		if(coord.length() > 3){	
+		if(coord.length() != 3){	
 			int hm = Integer.parseInt(splitStr[2]);
 			
 			opponentB.updateBoard(x,y,hm);
