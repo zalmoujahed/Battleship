@@ -7,6 +7,7 @@ public class Label extends JLabel{
 	
 	private int row, col;
 	private boolean hasShip;
+	private int shipIndex;
 	private boolean Chosen;
 	private int north, south, east, west = -1;
 	
@@ -16,6 +17,7 @@ public class Label extends JLabel{
 		row = x; 
 		col = y;
 		hasShip = false;
+		shipIndex = -1;
 		
 		if(name == ""){
 			this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
@@ -55,7 +57,8 @@ public class Label extends JLabel{
 	public boolean isChosen(){
 		return Chosen;
 	}
-	public void setHasShip(boolean ship){
+	public void setHasShip(boolean ship, int index){
+		shipIndex = index;
 		hasShip = ship;
 	}
 	public boolean hasShip(){
@@ -98,6 +101,9 @@ public class Label extends JLabel{
 	}
 	public void setWest(int i){
 		west = i;
+	}
+	public int getShipIndex(){
+		return shipIndex;
 	}
 
 }
