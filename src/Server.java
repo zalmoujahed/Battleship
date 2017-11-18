@@ -87,8 +87,8 @@ public class Server implements Runnable{
 		String inputLine; 
 >>>>>>> parent of b6d3ad4... IT WORKS JESUS CHRIST GOOD LORD PRAISE THE LORD
 
-//		while ((inputLine = recieve.readLine()) != null) 
-//		{
+		//while ((inputLine = recieve.readLine()) != null) 
+		//{
 			gui.processData(inputLine);
 <<<<<<< HEAD
 			

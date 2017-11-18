@@ -142,9 +142,7 @@ public JMenu CreateConnectionMenu() {
 					gameBegun = true;
 					statusBar.setText("Hits: "+ opponentB.getHits() + "    Misses: "+ opponentB.getMisses());
 					
-					if(opGameBegun){
-						send("s");
-					}
+					if(opGameBegun)
 					printToComments("You have started a new game.");
 					printToTurn("It's your turn");
 				}
@@ -160,6 +158,7 @@ public JMenu CreateConnectionMenu() {
 	public void startGame(){
 		start.setEnabled(true);
 		addShipMenu.setEnabled(true);
+		send("s");
 		}
 	//_______________________________________________________//	
 	public void setGridLayout(){
@@ -237,6 +236,7 @@ public JMenu CreateConnectionMenu() {
 	//_______________________________________________________//
 	public void setIsHost(boolean host) {
 		isHost = host;
+			
 	}
 
 	//_______________________________________________________//
@@ -248,9 +248,12 @@ public JMenu CreateConnectionMenu() {
 	public void send(String coord) {
 		if(isHost){
 			server.sendData(coord);
+			//System.out.println("sending"+coord);
 		}
+		
 		else{
 			client.sendData(coord);
+			//System.out.println("sending"+coord);
 		}
 	}
 
@@ -266,7 +269,7 @@ public JMenu CreateConnectionMenu() {
 		int y = Integer.parseInt(splitStr[1]);	
 		System.out.println("received" +coord);
 		
-		if(coord.length() > 3){	
+		if(coord.length() != 3){	
 			int hm = Integer.parseInt(splitStr[2]);
 			
 			opponentB.updateBoard(x,y,hm);

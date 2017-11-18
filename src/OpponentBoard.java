@@ -4,24 +4,20 @@ import java.awt.event.MouseEvent;
 public class OpponentBoard extends Board{
 	
 	private boolean turn;
-	private boolean gs;
 	
 	public OpponentBoard(GUI g, boolean gameStarted, boolean t){
 		super(g);
-		turn = true;
-		gs = gameStarted;
+		turn = t;
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		//if(gs && turn){
 		Label l = (Label)e.getSource();
         
         gui.send("" + (l.getRow()+1)+ " "+ (l.getCol()+1));
         
-        currentLabel = l;
         gui.repaint();
-		//}
+		
 	}
 	@Override
 	public void mouseEntered(MouseEvent e) {
