@@ -239,7 +239,7 @@ public class UserBoard extends Board {
 			this.hits++;
 			int index = board.get(row).get(col).getShipIndex();
 			Ships.get(index).incrementHit();
-			changeImageHit(row, col);
+			changeImageHit(row, col, index);
 		}
 		else{
 			this.misses++;
@@ -256,17 +256,88 @@ public class UserBoard extends Board {
 	}
 	//___________________________________________________________________________//
 	//change one label to a red ship piece
-	public void changeImageHit(int row, int col){
-		
+	public void changeImageHit(int row, int col, int shipIndex){
+		if(Ships.get(shipIndex).getRowEnd() == -1){  		//Horizontal ship
+			if(Ships.get(shipIndex).getColBeginning() < Ships.get(shipIndex).getColEnd() ){		//east
+				//leftmost image
+				if(col == Ships.get(shipIndex).getColBeginning()){
+					String path = Ships.get(shipIndex).getDestroyedH().get(0);
+					board.get(row).get(col).changeImage(path);
+				}
+				//rightmost image
+				else if(col == Ships.get(shipIndex).getColEnd()){
+					String path = Ships.get(shipIndex).getDestroyedH().get(2);
+					board.get(row).get(col).changeImage(path);
+				}
+				//middle
+				else{
+					String path = Ships.get(shipIndex).getDestroyedH().get(1);
+					board.get(row).get(col).changeImage(path);
+				}
+				
+			}
+			else{
+				//leftmost image
+				if(col == Ships.get(shipIndex).getColEnd()){
+					String path = Ships.get(shipIndex).getDestroyedH().get(0);
+					board.get(row).get(col).changeImage(path);
+				}
+				//rightmost image
+				else if(col == Ships.get(shipIndex).getColBeginning()){
+					String path = Ships.get(shipIndex).getDestroyedH().get(2);
+					board.get(row).get(col).changeImage(path);
+				}
+				//middle
+				else{
+					String path = Ships.get(shipIndex).getDestroyedH().get(1);
+					board.get(row).get(col).changeImage(path);
+				}
+				
+			}
+		}
+		else if (Ships.get(shipIndex).getColEnd() == -1){	//Vertical ship
+			if(Ships.get(shipIndex).getRowBeginning() < Ships.get(shipIndex).getRowEnd() ){		//south
+				//Top image
+				if(row == Ships.get(shipIndex).getRowBeginning()){
+					String path = Ships.get(shipIndex).getDestroyedV().get(0);
+					board.get(row).get(col).changeImage(path);
+				}
+				//Bottom image
+				if(row == Ships.get(shipIndex).getRowEnd()){
+					String path = Ships.get(shipIndex).getDestroyedV().get(2);
+					board.get(row).get(col).changeImage(path);
+				}
+				//Middle image
+				else{
+					String path = Ships.get(shipIndex).getDestroyedV().get(1);
+					board.get(row).get(col).changeImage(path);
+				}
+				
+			}
+			else{
+				//Top image
+				if(row == Ships.get(shipIndex).getRowEnd()){
+					String path = Ships.get(shipIndex).getDestroyedV().get(0);
+					board.get(row).get(col).changeImage(path);
+				}
+				//Bottom image
+				if(row == Ships.get(shipIndex).getRowBeginning()){
+					String path = Ships.get(shipIndex).getDestroyedV().get(2);
+					board.get(row).get(col).changeImage(path);
+				}
+				//Middle image
+				else{
+					String path = Ships.get(shipIndex).getDestroyedV().get(1);
+					board.get(row).get(col).changeImage(path);
+				}
+			}
+			
+		}
 	}
 	//___________________________________________________________________________//
 	//Change to dark blue
 	public void changeImageMiss(int row, int col){
-		
-	}
-	//___________________________________________________________________________//
-	public void changeShipSink(int row, int col){
-		
+		board.get(row).get(col).changeImage("battleship/batt101.gif");
 	}
 	//___________________________________________________________________________//
 	

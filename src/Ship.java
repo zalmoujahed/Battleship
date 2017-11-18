@@ -35,18 +35,7 @@ public class Ship {
 		rowE = -1;
 		colB = -1;
 		colE = -1;		
-		
-		if(length == 4){
-			destroyedH.add(1,destroyedH.get(1));
-			destroyedV.add(1,destroyedV.get(1));			
-		}
-		if(length == 5){
-			destroyedH.add(1,destroyedH.get(1));
-			destroyedV.add(1,destroyedV.get(1));
-			destroyedH.add(1,destroyedH.get(1));
-			destroyedV.add(1,destroyedV.get(1));
-		}
-		
+				
 	}
 	
 	public void setChosen(boolean chosen){
@@ -87,6 +76,12 @@ public class Ship {
 		rowE = r2;
 		colB = c;
 		return iconNamesVertical;
+	}
+	public ArrayList<String> getDestroyedH(){
+		return destroyedH;
+	}
+	public ArrayList<String> getDestroyedV(){
+		return destroyedV;
 	}
 	public void incrementHit(){
 		hits++;
