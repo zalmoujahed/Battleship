@@ -39,6 +39,7 @@ public class Client implements Runnable{
 			send = new PrintWriter(echoSocket.getOutputStream(), true);
 			recieve = new BufferedReader(new InputStreamReader(
 					echoSocket.getInputStream()));
+			
 		} catch (UnknownHostException e) {
 			System.err.println("Don't know about host: taranis.");
 			System.exit(1);
@@ -57,10 +58,7 @@ public class Client implements Runnable{
 	}
 	
 	public void sendData(String userInput) {
-
 		send.println(userInput);
-		//System.out.println("Client(in client): " + userInput);
-
 	}
 	
 	public void recieveData() throws IOException{

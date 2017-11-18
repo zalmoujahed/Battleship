@@ -14,11 +14,6 @@ public class OpponentBoard extends Board{
 	public void mouseClicked(MouseEvent e) {
 		Label l = (Label)e.getSource();
         
-        if(this.currentLabel != null){
-        	currentLabel.changeColor(Color.BLACK);
-        }
-        l.changeColor(Color.RED);
-        
         gui.send("" + (l.getRow()+1)+ " "+ (l.getCol()+1));
         
         currentLabel = l;
