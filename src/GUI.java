@@ -195,8 +195,7 @@ public JMenu CreateConnectionMenu() {
 		Container gameBoard2 = new Container();
 		gameBoard2.setLayout(new BorderLayout());
 		gameBoard2.add(new JLabel("Your Board"), BorderLayout.NORTH);
-		gameBoard2.add(userPanel, BorderLayout.CENTER);
-		gameBoard2.setSize(380, 400);
+		gameBoard2.add(userPanel);
 		
 		boards.add(gameBoard1);
 		boards.add(gameBoard2);
